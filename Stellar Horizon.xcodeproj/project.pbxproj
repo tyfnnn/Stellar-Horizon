@@ -1,0 +1,608 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F98B4FD12D5B878C0009F068 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = F98B4FD02D5B878C0009F068 /* FeedKit */; };
+		F98B4FD42D5B879F0009F068 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F98B4FD32D5B879F0009F068 /* Lottie */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F98B4F6D2D5B87250009F068 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F98B4F542D5B87230009F068 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F98B4F5B2D5B87230009F068;
+			remoteInfo = "Stellar Horizon";
+		};
+		F98B4F772D5B87250009F068 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F98B4F542D5B87230009F068 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F98B4F5B2D5B87230009F068;
+			remoteInfo = "Stellar Horizon";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F98B4F5C2D5B87230009F068 /* Stellar Horizon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stellar Horizon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F98B4F6C2D5B87250009F068 /* Stellar HorizonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stellar HorizonTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F98B4F762D5B87250009F068 /* Stellar HorizonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stellar HorizonUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F98B4F5E2D5B87230009F068 /* Stellar Horizon */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Stellar Horizon";
+			sourceTree = "<group>";
+		};
+		F98B4F6F2D5B87250009F068 /* Stellar HorizonTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Stellar HorizonTests";
+			sourceTree = "<group>";
+		};
+		F98B4F792D5B87250009F068 /* Stellar HorizonUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Stellar HorizonUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F98B4F592D5B87230009F068 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F98B4FD12D5B878C0009F068 /* FeedKit in Frameworks */,
+				F98B4FD42D5B879F0009F068 /* Lottie in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F98B4F692D5B87250009F068 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F98B4F732D5B87250009F068 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F98B4F532D5B87230009F068 = {
+			isa = PBXGroup;
+			children = (
+				F98B4F5E2D5B87230009F068 /* Stellar Horizon */,
+				F98B4F6F2D5B87250009F068 /* Stellar HorizonTests */,
+				F98B4F792D5B87250009F068 /* Stellar HorizonUITests */,
+				F98B4F5D2D5B87230009F068 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F98B4F5D2D5B87230009F068 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F98B4F5C2D5B87230009F068 /* Stellar Horizon.app */,
+				F98B4F6C2D5B87250009F068 /* Stellar HorizonTests.xctest */,
+				F98B4F762D5B87250009F068 /* Stellar HorizonUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F98B4F5B2D5B87230009F068 /* Stellar Horizon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F98B4F802D5B87250009F068 /* Build configuration list for PBXNativeTarget "Stellar Horizon" */;
+			buildPhases = (
+				F98B4F582D5B87230009F068 /* Sources */,
+				F98B4F592D5B87230009F068 /* Frameworks */,
+				F98B4F5A2D5B87230009F068 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F98B4F5E2D5B87230009F068 /* Stellar Horizon */,
+			);
+			name = "Stellar Horizon";
+			packageProductDependencies = (
+				F98B4FD02D5B878C0009F068 /* FeedKit */,
+				F98B4FD32D5B879F0009F068 /* Lottie */,
+			);
+			productName = "Stellar Horizon";
+			productReference = F98B4F5C2D5B87230009F068 /* Stellar Horizon.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F98B4F6B2D5B87250009F068 /* Stellar HorizonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F98B4F832D5B87250009F068 /* Build configuration list for PBXNativeTarget "Stellar HorizonTests" */;
+			buildPhases = (
+				F98B4F682D5B87250009F068 /* Sources */,
+				F98B4F692D5B87250009F068 /* Frameworks */,
+				F98B4F6A2D5B87250009F068 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F98B4F6E2D5B87250009F068 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F98B4F6F2D5B87250009F068 /* Stellar HorizonTests */,
+			);
+			name = "Stellar HorizonTests";
+			packageProductDependencies = (
+			);
+			productName = "Stellar HorizonTests";
+			productReference = F98B4F6C2D5B87250009F068 /* Stellar HorizonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F98B4F752D5B87250009F068 /* Stellar HorizonUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F98B4F862D5B87250009F068 /* Build configuration list for PBXNativeTarget "Stellar HorizonUITests" */;
+			buildPhases = (
+				F98B4F722D5B87250009F068 /* Sources */,
+				F98B4F732D5B87250009F068 /* Frameworks */,
+				F98B4F742D5B87250009F068 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F98B4F782D5B87250009F068 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F98B4F792D5B87250009F068 /* Stellar HorizonUITests */,
+			);
+			name = "Stellar HorizonUITests";
+			packageProductDependencies = (
+			);
+			productName = "Stellar HorizonUITests";
+			productReference = F98B4F762D5B87250009F068 /* Stellar HorizonUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F98B4F542D5B87230009F068 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					F98B4F5B2D5B87230009F068 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					F98B4F6B2D5B87250009F068 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = F98B4F5B2D5B87230009F068;
+					};
+					F98B4F752D5B87250009F068 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = F98B4F5B2D5B87230009F068;
+					};
+				};
+			};
+			buildConfigurationList = F98B4F572D5B87230009F068 /* Build configuration list for PBXProject "Stellar Horizon" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F98B4F532D5B87230009F068;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F98B4FCF2D5B878C0009F068 /* XCRemoteSwiftPackageReference "FeedKit" */,
+				F98B4FD22D5B879F0009F068 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = F98B4F5D2D5B87230009F068 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F98B4F5B2D5B87230009F068 /* Stellar Horizon */,
+				F98B4F6B2D5B87250009F068 /* Stellar HorizonTests */,
+				F98B4F752D5B87250009F068 /* Stellar HorizonUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F98B4F5A2D5B87230009F068 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F98B4F6A2D5B87250009F068 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F98B4F742D5B87250009F068 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F98B4F582D5B87230009F068 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F98B4F682D5B87250009F068 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F98B4F722D5B87250009F068 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F98B4F6E2D5B87250009F068 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F98B4F5B2D5B87230009F068 /* Stellar Horizon */;
+			targetProxy = F98B4F6D2D5B87250009F068 /* PBXContainerItemProxy */;
+		};
+		F98B4F782D5B87250009F068 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F98B4F5B2D5B87230009F068 /* Stellar Horizon */;
+			targetProxy = F98B4F772D5B87250009F068 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F98B4F7E2D5B87250009F068 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F98B4F7F2D5B87250009F068 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F98B4F812D5B87250009F068 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Stellar Horizon/Preview Content\"";
+				DEVELOPMENT_TEAM = HP32MGPMRF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.visual-stories.Stellar-Horizon";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F98B4F822D5B87250009F068 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Stellar Horizon/Preview Content\"";
+				DEVELOPMENT_TEAM = HP32MGPMRF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.visual-stories.Stellar-Horizon";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F98B4F842D5B87250009F068 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HP32MGPMRF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.visual-stories.Stellar-HorizonTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stellar Horizon.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Stellar Horizon";
+			};
+			name = Debug;
+		};
+		F98B4F852D5B87250009F068 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HP32MGPMRF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.visual-stories.Stellar-HorizonTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stellar Horizon.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Stellar Horizon";
+			};
+			name = Release;
+		};
+		F98B4F872D5B87250009F068 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HP32MGPMRF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.visual-stories.Stellar-HorizonUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Stellar Horizon";
+			};
+			name = Debug;
+		};
+		F98B4F882D5B87250009F068 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HP32MGPMRF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.visual-stories.Stellar-HorizonUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Stellar Horizon";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F98B4F572D5B87230009F068 /* Build configuration list for PBXProject "Stellar Horizon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F98B4F7E2D5B87250009F068 /* Debug */,
+				F98B4F7F2D5B87250009F068 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F98B4F802D5B87250009F068 /* Build configuration list for PBXNativeTarget "Stellar Horizon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F98B4F812D5B87250009F068 /* Debug */,
+				F98B4F822D5B87250009F068 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F98B4F832D5B87250009F068 /* Build configuration list for PBXNativeTarget "Stellar HorizonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F98B4F842D5B87250009F068 /* Debug */,
+				F98B4F852D5B87250009F068 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F98B4F862D5B87250009F068 /* Build configuration list for PBXNativeTarget "Stellar HorizonUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F98B4F872D5B87250009F068 /* Debug */,
+				F98B4F882D5B87250009F068 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F98B4FCF2D5B878C0009F068 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nmdias/FeedKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.2;
+			};
+		};
+		F98B4FD22D5B879F0009F068 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F98B4FD02D5B878C0009F068 /* FeedKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F98B4FCF2D5B878C0009F068 /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = FeedKit;
+		};
+		F98B4FD32D5B879F0009F068 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F98B4FD22D5B879F0009F068 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = F98B4F542D5B87230009F068 /* Project object */;
+}
