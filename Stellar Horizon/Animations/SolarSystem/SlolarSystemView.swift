@@ -16,6 +16,7 @@ struct SolarSystemView: View {
             
             SolarSystem(selectedPlanet: $selectedPlanet)
                 .scaleEffect(0.45)
+    
             
             VStack {
                 if let selected = selectedPlanet {

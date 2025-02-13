@@ -14,13 +14,13 @@ struct MainTabView: View {
         TabView(selection: $selectedTab) {
             APODView()
                 .tabItem {
-                    Label("Jobs", systemImage: "briefcase.fill")
+                    Label("Galerie", systemImage: "briefcase.fill")
                 }
                 .tag(0)
             
-            APODView()
+            RotatingEarthView()
                 .tabItem {
-                    Label("Favoriten", systemImage: "star.fill")
+                    Label("Rotaing Earth ", systemImage: "globe.europe.africa.fill")
                 }
                 .tag(1)
             

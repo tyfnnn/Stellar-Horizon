@@ -11,7 +11,7 @@ import SwiftUI
 struct Stellar_HorizonApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RotatingEarthView()
         }
     }
 }

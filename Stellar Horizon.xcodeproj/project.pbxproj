@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F98B4FD12D5B878C0009F068 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = F98B4FD02D5B878C0009F068 /* FeedKit */; };
 		F98B4FD42D5B879F0009F068 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F98B4FD32D5B879F0009F068 /* Lottie */; };
+		F99FDB572D5E266E006F7675 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F99FDB562D5E266E006F7675 /* GoogleService-Info.plist */; };
 		F9C27EF62D5B8B850000A353 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F9C27ED92D5B8B850000A353 /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		F98B4F5C2D5B87230009F068 /* Stellar Horizon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stellar Horizon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F98B4F6C2D5B87250009F068 /* Stellar HorizonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stellar HorizonTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F98B4F762D5B87250009F068 /* Stellar HorizonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stellar HorizonUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F99FDB562D5E266E006F7675 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F9C27ED92D5B8B850000A353 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 				F98B4F792D5B87250009F068 /* Stellar HorizonUITests */,
 				F98B4F5D2D5B87230009F068 /* Products */,
 				F9C27ED92D5B8B850000A353 /* README.md */,
+				F99FDB562D5E266E006F7675 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9C27EF62D5B8B850000A353 /* README.md in Resources */,
+				F99FDB572D5E266E006F7675 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
