@@ -66,7 +66,7 @@ Stellar Horizon is an immersive iOS app that brings the wonders of space to your
 - **Mapping**: MapKit (ISS Tracker)
 - **3D Rendering**: SceneKit (Climate Globe)
 - **Web Content**: WebKit (Space News)
-- **Dependency Management**: CocoaPods
+- **RSS Feeds**: FeedKit
 
 ---
 
