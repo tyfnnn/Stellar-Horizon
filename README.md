@@ -1,87 +1,100 @@
-# SpaceNews
+# Stellar Horizon 🌌
 
-A comprehensive iOS application that brings space exploration and environmental awareness together. This app combines NASA's stunning astronomy pictures, space news feeds, and environmental data to create an engaging space and science experience.
+**Explore the Cosmos from Your Pocket**  
+Stellar Horizon is an immersive iOS app that brings the wonders of space to your fingertips. Discover stunning astrophotography, stay updated with the latest space news, track the ISS in real-time, and visualize Earth's climate changes through an interactive 3D globe.
 
-## Features
+---
 
-### 🌌 Astronomy Picture Gallery
-- Daily NASA Astronomy Picture of the Day (APOD)
-- High-resolution image viewing with zoom capabilities
-- Detailed explanations from NASA astronomers
-- Support for both image and video content
-- Save favorites for offline viewing
+## Features 🚀
 
-### 📰 Space News Feed
-Aggregated news from major space agencies and organizations:
-- NASA News Releases
-- NASA Featured News
-- ESA (European Space Agency)
-  - Observing the Earth
-  - Space Engineering & Technology
-- Real-time updates and notifications
-- Offline reading capability
+### 🌠 Astro Photos 
+- Browse breathtaking space images from **NASA**, **ESA**, and other sources.
+- **Save favorites** to your Firebase Firestore account for offline access.
+- Seamless authentication via **Firebase** (anonymous, email, or Google Sign-In).
 
-### 🛰️ Space Tracking (Coming Soon)
-- International Space Station (ISS) live tracking
-- Satellite tracking and visualization
-- Prediction of visible passes
-- Integration with the Open Notify API
+### 📰 Space News 
+- Read curated articles from **NASA** and **ESA** directly in-app using **WebKit**.
+- **Bookmark links** to revisit later (stored in Firestore).
 
-### 📊 Environmental Data (Coming Soon)
-- Climate change visualization
-- Atmospheric data tracking
-- Sea level monitoring
-- Temperature trend analysis
+### 🛰️ ISS Tracker 
+- Real-time tracking of the International Space Station on a **MapKit**-powered map.
+- View the ISS's current location, speed, and orbital path.
 
-## Technical Requirements
+### 🌍 3D Climate Globe 
+- A **SceneKit**-rendered 3D Earth model showcasing historical climate data.
+- Adjust timelines to see **temperature changes** visualized through dynamic textures.
 
-- iOS 17.0 or later
-- Swift 6.0
-- Xcode 15.0+
+---
 
-## Dependencies
+## Installation ⚙️
 
-The project uses the following Swift packages:
-- Lottie: For smooth animations and loading states
-- FeedKit: For RSS feed parsing and management
+1. **Clone the Repository**  
+   ```bash
+   git clone https://github.com/your-username/stellar-horizon.git
+   cd stellar-horizon
+   ```
 
-## Installation
+2. **Install Dependencies**  
+   Ensure [CocoaPods](https://cocoapods.org/) is installed, then run:  
+   ```bash
+   pod install
+   ```
 
-1. Clone the repository
-2. Open `SpaceNews.xcodeproj` in Xcode
-3. Update the signing certificate to your development team
-4. Build and run the project
+3. **Open in Xcode**  
+   Launch `Stellar Horizon.xcworkspace`.
 
-## API Keys
+---
 
-To run the project, you'll need:
-- NASA API key (currently using a demo key)
-- Register at https://api.nasa.gov/ for your own API key
+## Configuration 🔑
 
-## Contributing
+### Firebase Setup 🔥
+1. Create a Firebase project on the [Firebase Console](https://console.firebase.google.com/).
+2. Enable **Authentication** (Anonymous, Email/Password, Google Sign-In).
+3. Enable **Firestore Database**.
+4. Download your `GoogleService-Info.plist` and add it to the Xcode project under the `Stellar Horizon` target.
 
-We welcome contributions! Please feel free to submit a Pull Request.
+### NASA API Key 🛸
+1. Obtain a free API key from [NASA API Portal](https://api.nasa.gov/).
+2. Add the key to `Config.swift`:
+   ```swift
+   struct Config {
+       static let nasaAPIKey = "YOUR_API_KEY_HERE"
+   }
+   ```
 
-## License
+---
 
-This project is released under the MIT License.
+## Technologies Used 💻
+- **Authentication & Database**: Firebase (Auth, Firestore)
+- **APIs**: NASA APOD (Astronomy Picture of the Day), NASA/ESA News
+- **Mapping**: MapKit (ISS Tracker)
+- **3D Rendering**: SceneKit (Climate Globe)
+- **Web Content**: WebKit (Space News)
+- **Dependency Management**: CocoaPods
 
-## Credits
+---
 
-- NASA APOD API
-- ESA RSS Feeds
-- Open Notify API
+## Contributing 🤝
+Contributions are welcome!  
+1. Fork the repository.
+2. Create a feature branch: `git checkout -b feature/your-idea`.
+3. Commit changes: `git commit -m 'Add your idea'`.
+4. Push to the branch: `git push origin feature/your-idea`.
+5. Open a **Pull Request**.  
 
-## Screenshots
+For major changes, please open an issue first to discuss.
 
-[Coming Soon]
+---
 
-## Contact
+## License 📄
+Distributed under the MIT License. See `LICENSE` for details.
 
-For questions and support, please open an issue in the repository.
+---
 
+## Acknowledgments 🪐
+- **NASA** and **ESA** for providing open-access APIs and media.
+- Firebase for backend infrastructure.
+- The open-source community for invaluable tools and libraries.
+``` 
 
-
-
-
-
+  
