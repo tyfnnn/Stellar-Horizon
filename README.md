@@ -26,6 +26,79 @@ Stellar Horizon is an immersive iOS app that brings the wonders of space to your
 
 ---
 
+## UML Diagram 📊
+Below is a placeholder for the UML diagram of the app's architecture. This diagram will provide an overview of the classes, relationships, and interactions within the project.
+
+```mermaid
+classDiagram
+    class Stellar_HorizonApp {
+        +init()
+        +body: Scene
+    }
+    
+    class ContentView {
+        +body: View
+    }
+    
+    class RotatingEarthView {
+        -selectedTexture: String
+        +textureOptions: [TextureOption]
+        +body: View
+    }
+    
+    class FirebaseAuthModel {
+        -auth: Auth
+        -user: FirebaseAuth.User
+        -errorMessage: String
+        +isUserSignedIn: Bool
+        +userID: String
+        +signInAnonymously()
+        +signUp(email, password)
+        +signIn(email, password)
+        +signOut()
+    }
+    
+    class FirebaseViewModel {
+        -auth: Auth
+        -user: FirebaseAuth.User
+        -firestoreUser: FirestoreUser
+        -errorMessage: String
+        +isUserSignedIn: Bool
+        +userID: String
+        +signInAnonymously()
+        +signUp(email, password, name, birthDate, gender)
+        +signIn(email, password)
+    }
+    
+    class AuthenticationView {
+        +body: View
+    }
+    
+    class BookmarkManager {
+        -bookmarkedItems: Set<String>
+        -bookmarksKey: String
+        +isBookmarked(itemId): Bool
+        +toggleBookmark(itemId)
+        -loadBookmarks()
+        -saveBookmarks()
+    }
+    
+    class TextureOption {
+        +id: String
+        +title: String
+    }
+
+    Stellar_HorizonApp --> ContentView
+    ContentView --> RotatingEarthView
+    ContentView --> AuthenticationView
+    AuthenticationView --> FirebaseViewModel
+    RotatingEarthView --> TextureOption
+    FirebaseViewModel --> FirebaseAuthModel
+    ContentView --> BookmarkManager
+```
+
+---
+
 ## Installation ⚙️
 
 1. **Clone the Repository**  
