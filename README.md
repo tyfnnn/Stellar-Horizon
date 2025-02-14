@@ -79,6 +79,5 @@ Distributed under the MIT License. See `LICENSE` for details.
 - **NASA** and **ESA** for providing open-access APIs and media.
 - Firebase for backend infrastructure.
 - The open-source community for invaluable tools and libraries.
-``` 
 
   
