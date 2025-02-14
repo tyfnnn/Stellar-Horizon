@@ -34,11 +34,7 @@ Stellar Horizon is an immersive iOS app that brings the wonders of space to your
    cd stellar-horizon
    ```
 
-2. **Install Dependencies**  
-   Ensure [CocoaPods](https://cocoapods.org/) is installed, then run:  
-   ```bash
-   pod install
-   ```
+2. **Install Package Dependencies**  
 
 3. **Open in Xcode**  
    Launch `Stellar Horizon.xcworkspace`.
@@ -71,18 +67,6 @@ Stellar Horizon is an immersive iOS app that brings the wonders of space to your
 - **3D Rendering**: SceneKit (Climate Globe)
 - **Web Content**: WebKit (Space News)
 - **Dependency Management**: CocoaPods
-
----
-
-## Contributing 🤝
-Contributions are welcome!  
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/your-idea`.
-3. Commit changes: `git commit -m 'Add your idea'`.
-4. Push to the branch: `git push origin feature/your-idea`.
-5. Open a **Pull Request**.  
-
-For major changes, please open an issue first to discuss.
 
 ---
 
