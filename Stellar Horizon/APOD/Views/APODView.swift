@@ -76,6 +76,7 @@ struct APODView: View {
                     }
                 }
             }
+            .background(Color("bgColors"))
             .navigationTitle("NASA APOD")
         }
         .onAppear {

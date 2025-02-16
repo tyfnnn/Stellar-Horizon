@@ -12,7 +12,7 @@ struct SolarSystemView: View {
     
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+//            Color.black.ignoresSafeArea()
             
             SolarSystem(selectedPlanet: $selectedPlanet)
                 .scaleEffect(0.45)

@@ -52,6 +52,7 @@ struct FeedView: View {
                     }
                 }
             }
+            .background(Color("bgColors"))
             .navigationTitle("Space News")
             .toolbar {
                 Button(action: {
