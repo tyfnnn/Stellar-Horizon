@@ -16,6 +16,7 @@
 		F99FDB622D5E2C4B006F7675 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F99FDB612D5E2C4B006F7675 /* FirebaseFirestore */; };
 		F99FDB642D5E2C4B006F7675 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F99FDB632D5E2C4B006F7675 /* FirebaseStorage */; };
 		F99FDB6D2D5E2DD0006F7675 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F99FDB6C2D5E2DD0006F7675 /* GoogleService-Info.plist */; };
+		F9A9CEC52D6335CF006761E1 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F9A9CEC42D6335CF006761E1 /* GoogleSignIn */; };
 		F9C27EF62D5B8B850000A353 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F9C27ED92D5B8B850000A353 /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 				F99FDB642D5E2C4B006F7675 /* FirebaseStorage in Frameworks */,
 				F99FDB5C2D5E2C4B006F7675 /* FirebaseAuth in Frameworks */,
 				F99FDB622D5E2C4B006F7675 /* FirebaseFirestore in Frameworks */,
+				F9A9CEC52D6335CF006761E1 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +147,7 @@
 				F99FDB5F2D5E2C4B006F7675 /* FirebaseDatabase */,
 				F99FDB612D5E2C4B006F7675 /* FirebaseFirestore */,
 				F99FDB632D5E2C4B006F7675 /* FirebaseStorage */,
+				F9A9CEC42D6335CF006761E1 /* GoogleSignIn */,
 			);
 			productName = "Stellar Horizon";
 			productReference = F98B4F5C2D5B87230009F068 /* Stellar Horizon.app */;
@@ -232,6 +235,7 @@
 				F98B4FCF2D5B878C0009F068 /* XCRemoteSwiftPackageReference "FeedKit" */,
 				F98B4FD22D5B879F0009F068 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				F99FDB582D5E2C4B006F7675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				F9A9CEC32D6335CF006761E1 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F98B4F5D2D5B87230009F068 /* Products */;
@@ -439,6 +443,7 @@
 				DEVELOPMENT_TEAM = HP32MGPMRF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Stellar-Horizon-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -468,6 +473,7 @@
 				DEVELOPMENT_TEAM = HP32MGPMRF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Stellar-Horizon-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -624,6 +630,14 @@
 				minimumVersion = 11.8.1;
 			};
 		};
+		F9A9CEC32D6335CF006761E1 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -666,6 +680,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F99FDB582D5E2C4B006F7675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		F9A9CEC42D6335CF006761E1 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9A9CEC32D6335CF006761E1 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

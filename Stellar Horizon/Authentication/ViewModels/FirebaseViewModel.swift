@@ -5,10 +5,12 @@
 //  Created by Tayfun Ilker on 13.02.25.
 //
 
-import Foundation
 import Observation
 import FirebaseAuth
+import GoogleSignIn
+import FirebaseCore
 
+@MainActor
 @Observable
 final class FirebaseViewModel {
     private var auth = FirebaseManager.shared.auth
@@ -63,6 +65,52 @@ final class FirebaseViewModel {
             user = result.user
         } catch {
             errorMessage = error.localizedDescription
+            print(error.localizedDescription)
+        }
+    }
+    
+    func signInWithGoogle() async {
+        do {
+            guard let clientID = FirebaseApp.app()?.options.clientID else {
+                throw URLError(.badServerResponse)
+            }
+            
+            let config = GIDConfiguration(clientID: clientID)
+            GIDSignIn.sharedInstance.configuration = config
+            
+            let result = try await GIDSignIn.sharedInstance.signIn(
+                withPresenting: ApplicationUtility.rootViewController
+            )
+            
+            guard let idToken = result.user.idToken?.tokenString else {
+                throw URLError(.badServerResponse)
+            }
+            
+            let accessToken = result.user.accessToken.tokenString
+            let credential = GoogleAuthProvider.credential(
+                withIDToken: idToken,
+                accessToken: accessToken
+            )
+            
+            let authResult = try await auth.signIn(with: credential)
+            user = authResult.user
+            
+            // Erstelle FireUser, falls der Benutzer neu ist
+            if let isNewUser = authResult.additionalUserInfo?.isNewUser, isNewUser {
+                let profile = result.user.profile
+                await createUser(
+                    userID: authResult.user.uid,
+                    email: profile?.email ?? "",
+                    name: profile?.name ?? "",
+                    birthDate: Date(),
+                    gender: FirestoreUser.Gender.preferNotToSay
+                )
+            } else {
+                fetchUser(userID: authResult.user.uid)
+            }
+            
+        } catch {
+            errorMessage = error.localizedDescription
         }
     }
     
@@ -111,6 +159,16 @@ final class FirebaseViewModel {
                 print(error.localizedDescription)
             }
         }
+    }
+}
+
+struct ApplicationUtility {
+    static var rootViewController: UIViewController {
+        guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let root = screen.windows.first?.rootViewController else {
+            return UIViewController()
+        }
+        return root
     }
 }
 

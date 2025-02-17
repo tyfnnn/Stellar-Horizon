@@ -12,6 +12,7 @@ struct ContentView: View {
     var body: some View {
         if vm.isUserSignedIn {
             MainTabView()
+                .environment(vm)
         } else {
             AuthenticationView()
                 .environment(vm)

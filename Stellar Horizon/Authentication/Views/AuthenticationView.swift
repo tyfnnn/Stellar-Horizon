@@ -27,6 +27,8 @@ struct AuthenticationView: View {
                 
                 LoginFields(usernameInput: $email, passwordInput: $password)
                     .padding(.bottom,50)
+                    .environment(vm)
+                
                 VStack(spacing: 12) {
                     AuthenticationButton(
                         icon: "anonym",
@@ -49,7 +51,7 @@ struct AuthenticationView: View {
                         backgroundColor: .white
                     ) {
                         Task {
-                            print("Google sign int")
+                            await vm.signInWithGoogle()
                         }
                     }
                     

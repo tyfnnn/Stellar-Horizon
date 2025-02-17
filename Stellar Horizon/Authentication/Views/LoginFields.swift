@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoginFields: View {
-    @State private var vm = FirebaseViewModel()
+    @Environment(FirebaseViewModel.self) private var vm
     let username = "Username"
     let password = "Password"
     @Binding var usernameInput: String
@@ -42,7 +42,7 @@ struct LoginFields: View {
             
             Button("Sign In") {
                 Task {
-                    await vm.signIn(email: username, password: password)
+                    await vm.signIn(email: usernameInput, password: passwordInput)
                 }
             }
             .padding()
