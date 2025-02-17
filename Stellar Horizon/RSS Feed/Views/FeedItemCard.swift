@@ -52,7 +52,7 @@ struct FeedItemCard: View {
                         startPoint: .top,
                         endPoint: .bottom
                     )
-                    .frame(width: .infinity, height: 75)
+                    .frame(width: 250, height: 75)
                 }
                 
                 VStack {
