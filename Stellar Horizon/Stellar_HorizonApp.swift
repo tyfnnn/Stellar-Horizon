@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 @main
-struct Stellar_HorizonApp: App {
+struct MyFirebaseApp: App {
+    init() {
+        FirebaseApp.configure()
+    }
+
     var body: some Scene {
         WindowGroup {
-            RotatingEarthView()
+            ContentView()
+                .preferredColorScheme(.dark)
         }
     }
 }

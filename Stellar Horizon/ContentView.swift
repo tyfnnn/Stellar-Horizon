@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var vm = FirebaseViewModel()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        if vm.isUserSignedIn {
+            MainTabView()
+                .environment(vm)
+        } else {
+            AuthenticationView()
+                .environment(vm)
         }
-        .padding()
     }
 }
 

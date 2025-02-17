@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @Environment(FirebaseViewModel.self) private var vm
     @State private var selectedTab = 0
     
     var body: some View {
@@ -24,11 +25,12 @@ struct MainTabView: View {
                 }
                 .tag(1)
             
-            APODView()
+            SettingsView()
                 .tabItem {
                     Label("Einstellungen", systemImage: "gear")
                 }
                 .tag(2)
+                .environment(vm)
         }
     }
 }
