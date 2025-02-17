@@ -15,7 +15,7 @@ import FirebaseCore
 final class FirebaseViewModel {
     private var auth = FirebaseManager.shared.auth
     private var user: FirebaseAuth.User?
-    private var firestoreUser: FirestoreUser?
+    private(set) var firestoreUser: FirestoreUser?
     
     var errorMessage: String?
     

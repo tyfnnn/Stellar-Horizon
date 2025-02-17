@@ -13,23 +13,29 @@ struct MainTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
+            FeedView()
+                .tabItem {
+                    Label("Space News", systemImage: "newspaper.fill")
+                }
+                .tag(0)
+            
             APODView()
                 .tabItem {
                     Label("Galerie", systemImage: "briefcase.fill")
                 }
-                .tag(0)
+                .tag(1)
             
             RotatingEarthView()
                 .tabItem {
                     Label("Rotaing Earth ", systemImage: "globe.europe.africa.fill")
                 }
-                .tag(1)
+                .tag(2)
             
             SettingsView()
                 .tabItem {
                     Label("Einstellungen", systemImage: "gear")
                 }
-                .tag(2)
+                .tag(3)
                 .environment(vm)
         }
     }

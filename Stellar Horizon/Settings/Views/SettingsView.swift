@@ -9,19 +9,15 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(FirebaseViewModel.self) private var vm
-    @AppStorage("username") private var username: String = ""
-    @AppStorage("userEmail") private var userEmail: String = ""
-    @AppStorage("userBirthdate") private var birthdate: Double = Date().timeIntervalSince1970
-    @AppStorage("userLocation") private var location: String = ""
+    
     @AppStorage("notificationsEnabled") private var notificationsEnabled: Bool = false
     @AppStorage("appLanguage") private var appLanguage: String = "Deutsch"
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     @AppStorage("fontSize") private var fontSize: Double = 1.0
+    @AppStorage("notificationPreferences") private var notificationPreferences: Int = 0
     
     @State private var showingNotificationSettings = false
     @State private var showingDatePicker = false
-    
-    @AppStorage("notificationPreferences") private var notificationPreferences: Int = 0
     
     private let languages = ["Deutsch", "English", "Français", "Español", "Türkçe", "ελληνική", "اَلْعَرَبِيَّة"]
     
@@ -30,21 +26,22 @@ struct SettingsView: View {
             NavigationStack {
                 Form {
                     Section(header: Text("Persönliche Informationen")) {
-                        TextField("Benutzername", text: $username)
-                        TextField("E-Mail", text: $userEmail)
-                            .keyboardType(.emailAddress)
-                            .autocapitalization(.none)
-                        
-                        Button(action: { showingDatePicker.toggle() }) {
+                        if let firestoreUser = vm.firestoreUser {
+                            Text(firestoreUser.name)
+                                .foregroundColor(.gray)
+                            
+                            Text(firestoreUser.email)
+                                .foregroundColor(.gray)
+                            
                             HStack {
                                 Text("Geburtsdatum")
                                 Spacer()
-                                Text(Date(timeIntervalSince1970: birthdate).formatted(date: .long, time: .omitted))
+                                Text(firestoreUser.birthDate.formatted(date: .long, time: .omitted))
                                     .foregroundColor(.gray)
                             }
+                        } else {
+                            ProgressView()
                         }
-                        
-                        TextField("Stadt", text: $location)
                     }
                     
                     Section(header: Text("Benachrichtigungen")) {
@@ -107,11 +104,11 @@ struct SettingsView: View {
                 .sheet(isPresented: $showingNotificationSettings) {
                     NotificationSettingsView(preferences: $notificationPreferences)
                 }
-                .sheet(isPresented: $showingDatePicker) {
-                    DatePickerView(birthdate: $birthdate)
+                .onAppear {
+                    if let userID = vm.userID {
+                        vm.fetchUser(userID: userID)
+                    }
                 }
-                
-            
         }
     }
 }

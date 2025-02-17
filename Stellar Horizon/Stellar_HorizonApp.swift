@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseCore
 
 @main
-struct MyFirebaseApp: App {
+struct Stellar_HorizonApp: App {
     init() {
         FirebaseApp.configure()
     }
