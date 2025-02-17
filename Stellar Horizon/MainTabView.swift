@@ -19,9 +19,9 @@ struct MainTabView: View {
                 }
                 .tag(0)
             
-            APODView()
+            GalleryView()
                 .tabItem {
-                    Label("Galerie", systemImage: "briefcase.fill")
+                    Label("Galerie", systemImage: "camera.aperture")
                 }
                 .tag(1)
             
