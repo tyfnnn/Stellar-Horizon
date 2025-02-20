@@ -1,137 +1,86 @@
-//
-//  GalleryView.swift
-//  Stellar Horizon
-//
-//  Created by Tayfun Ilker on 17.02.25.
-//
-
 import SwiftUI
 
-struct GalleryCategory: Identifiable, Hashable {
-    let id = UUID()
-    let title: String
-    let subcategories: [GallerySubcategory]
-    
-    static let allCategories: [GalleryCategory] = [
-        GalleryCategory(title: "NASA", subcategories: [
-            GallerySubcategory(title: "Astronomy Picture of the Day", source: .nasa_apod),
-            GallerySubcategory(title: "James Webb Telescope", source: .nasa_webb),
-            GallerySubcategory(title: "Mars Rovers", source: .nasa_mars)
-        ]),
-        GalleryCategory(title: "ESA", subcategories: [
-            GallerySubcategory(title: "Hubble Highlights", source: .esa_hubble),
-            GallerySubcategory(title: "Earth Observation", source: .esa_earth)
-        ])
-    ]
-}
-
-struct GallerySubcategory: Identifiable, Hashable {
-    let id = UUID()
-    let title: String
-    let source: PhotoSource
-}
-
-enum PhotoSource {
-    case nasa_apod
-    case nasa_webb
-    case nasa_mars
-    case esa_hubble
-    case esa_earth
-}
-
 struct GalleryView: View {
-    @StateObject private var apodViewModel = APODViewModel()
+    @Namespace private var transitionNamespace
+    private let columns = [GridItem(.adaptive(minimum: 170))]
+    @StateObject private var viewModel = GalleryViewModel()
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    // APOD Featured Section
-                    VStack(alignment: .leading) {
-                        Text("Featured Today")
-                            .font(.title)
-                            .padding(.horizontal)
-                        
-                        if let apod = apodViewModel.apod {
-                            NavigationLink(destination: APODView()) {
-                                VStack(alignment: .leading) {
-                                    AsyncImage(url: URL(string: apod.url)) { image in
-                                        image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(height: 200)
-                                            .clipped()
-                                    } placeholder: {
-                                        ProgressView()
-                                            .frame(height: 200)
-                                    }
-                                    
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        Text("NASA's Picture of the Day")
-                                            .font(.headline)
-                                        Text(apod.title)
-                                            .font(.subheadline)
-                                            .foregroundColor(.secondary)
-                                    }
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 8)
+            Group {
+                if viewModel.isLoading {
+                    ProgressView()
+                } else {
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: 20) {
+                            ForEach(viewModel.albums) { album in
+                                NavigationLink(value: album) {
+                                    AlbumCoverView(album: album, namespace: transitionNamespace)
                                 }
-                                .background(Color("bgColors"))
-                                .cornerRadius(12)
-                                .padding(.horizontal)
                             }
                         }
-                    }
-                    
-                    // Categories
-                    ForEach(GalleryCategory.allCategories) { category in
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(category.title)
-                                .font(.title)
-                                .padding(.horizontal)
-                            
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                LazyHStack(spacing: 15) {
-                                    ForEach(category.subcategories) { subcategory in
-                                        NavigationLink(destination: Text(subcategory.title)) {
-                                            GalleryItemCard(title: subcategory.title)
-                                        }
-                                    }
-                                }
-                                .padding(.horizontal)
-                            }
-                        }
+                        .padding()
                     }
                 }
-                .padding(.vertical, 10)
             }
-            .background(Color("bgColors"))
-            .navigationTitle("Gallery")
+            .navigationDestination(for: Album.self) { album in
+                AlbumDetailView(album: album, transitionNamespace: transitionNamespace)
+            }
+            .navigationTitle("Astro Gallery")
         }
         .onAppear {
-            apodViewModel.fetchAPOD()
+            viewModel.loadAlbums()
         }
     }
 }
 
-struct GalleryItemCard: View {
-    let title: String
+class GalleryViewModel: ObservableObject {
+    @Published var albums: [Album] = []
+    @Published var isLoading = false
+    
+    @MainActor
+    func loadAlbums() {
+        isLoading = true
+        // Just load the static albums
+        albums = Album.allAlbums
+        isLoading = false
+    }
+}
+
+struct AlbumCoverView: View {
+    let album: Album
+    let namespace: Namespace.ID
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Image("HDR_multi_nebulae") // Placeholder image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 250, height: 150)
-                .clipped()
+        ZStack(alignment: .bottomLeading) {
+            AsyncImage(url: URL(string: album.coverImage)) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+            } placeholder: {
+                ProgressView()
+            }
+            .frame(width: 175, height: 175)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .shadow(radius: 5)
+            .matchedGeometryEffect(id: album.id, in: namespace)
             
-            Text(title)
-                .font(.headline)
-                .padding(.horizontal)
-                .padding(.vertical, 8)
+            VStack(alignment: .leading) {
+                Text(album.agency)
+                    .font(.caption)
+                    .bold()
+                    .padding(4)
+                    .background(.ultraThinMaterial)
+                    .clipShape(Capsule())
+                
+                Text(album.name)
+                    .font(.headline)
+                    .padding(4)
+                    .background(.ultraThinMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+            }
+            .padding(8)
         }
-        .background(Color("bgColors"))
-        .cornerRadius(12)
     }
 }
 

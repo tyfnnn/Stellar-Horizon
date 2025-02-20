@@ -49,7 +49,7 @@ struct APODView: View {
                                     .frame(height: 200)
                                 }
                                 .fullScreenCover(isPresented: $isImageDetailPresented) {
-                                    ImageDetailView(image: URL(string: apod.url)!)
+                                    ImageViewer(image: URL(string: apod.url)!)
                                 }
                             }
                             

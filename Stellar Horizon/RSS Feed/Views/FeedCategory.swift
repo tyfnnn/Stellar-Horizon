@@ -20,7 +20,13 @@ struct FeedCategory: Identifiable, Hashable {
         FeedCategory(title: "ESA", subcategories: [
             Subcategory(title: "Observing the Earth", url: URL(string: "https://www.esa.int/rssfeed/Our_Activities/Observing_the_Earth")!),
             Subcategory(title: "Space Engineering & Technology", url: URL(string: "https://www.esa.int/rssfeed/Our_Activities/Space_Engineering_Technology")!)
+        ]),
+        FeedCategory(title: "NASA", subcategories: [
+            Subcategory(title: "Visible Earth", url: URL(string: "https://www.esa.int/rssfeed/Our_Activities/Observing_the_Earth")!),
+            Subcategory(title: "Space Engineering & Technology", url: URL(string: "https://visibleearth.nasa.gov/feeds/all.rss")!)
         ])
 
     ]
 }
+
+
