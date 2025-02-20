@@ -21,12 +21,19 @@ struct AuthenticationView: View {
             VStack {
                 Spacer()
                 
-                WelcomeFontView()
-                
+                ZStack {
+                    GeometryReader { geometry in
+                        SolarSystemView()
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                            .offset(y: -22)
+                        WelcomeFontView()
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                    }
+                }
                 Spacer()
                 
                 LoginFields(usernameInput: $email, passwordInput: $password)
-                    .padding(.bottom,50)
+                    .padding(.bottom, 20)
                     .environment(vm)
                 
                 VStack(spacing: 12) {
@@ -78,8 +85,4 @@ struct AuthenticationView: View {
             }
         }
     }
-}
-
-#Preview {
-    AuthenticationView()
 }

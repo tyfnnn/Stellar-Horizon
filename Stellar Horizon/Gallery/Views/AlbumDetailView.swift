@@ -35,7 +35,7 @@ struct AlbumDetailView: View {
                     .padding(.top)
                 
                 if viewModel.isLoading {
-                    ProgressView()
+                    LoaderView()
                         .frame(maxWidth: .infinity)
                 } else {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 16) {
@@ -59,10 +59,11 @@ struct AlbumDetailView: View {
             }
             .padding()
         }
+        .background(Color("bgColors"))
         .navigationBarTitleDisplayMode(.inline)
         .fullScreenCover(item: $selectedPhoto) { photo in
             NavigationStack {
-                PhotoDetailView(photo: photo)
+                ImageDetailView(photo: photo)
             }
         }
         .task {

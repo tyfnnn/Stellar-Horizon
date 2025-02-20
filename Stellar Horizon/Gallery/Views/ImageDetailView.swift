@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PhotoDetailView: View {
+struct ImageDetailView: View {
     let photo: AstroPhoto
     @Environment(\.dismiss) private var dismiss
     @State private var isImageViewerPresented = false
@@ -26,7 +26,7 @@ struct PhotoDetailView: View {
                             isImageViewerPresented = true
                         }
                 } placeholder: {
-                    ProgressView()
+                    LoaderView()
                 }
                 
                 VStack(alignment: .leading, spacing: 8) {
@@ -49,6 +49,7 @@ struct PhotoDetailView: View {
             }
             .padding()
         }
+        .background(Color("bgColors"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -66,11 +67,12 @@ struct PhotoDetailView: View {
 }
 
 #Preview {
-    PhotoDetailView(photo: AstroPhoto(
+    ImageDetailView(photo: AstroPhoto(
         imageName: "sample_image",
         title: "Sample Photo",
         description: "A beautiful cosmic view",
         date: "2024-02-17",
-        credit: "NASA/ESA"
+        credit: "NASA/ESA",
+        photoId: "Sample"
     ))
 }

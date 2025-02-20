@@ -8,27 +8,10 @@
 import SwiftUI
 
 struct SolarSystemView: View {
-    @State private var selectedPlanet: Planet? = nil
-    
     var body: some View {
         ZStack {
-//            Color.black.ignoresSafeArea()
-            
-            SolarSystem(selectedPlanet: $selectedPlanet)
+            SolarSystem()
                 .scaleEffect(0.45)
-    
-            
-            VStack {
-                if let selected = selectedPlanet {
-                    Text(selected.name)
-                        .font(.title)
-                        .foregroundColor(.white)
-                    Text(selected.description)
-                        .foregroundColor(.white)
-                }
-                Spacer()
-            }
-            .padding(.top, 50)
         }
     }
 }

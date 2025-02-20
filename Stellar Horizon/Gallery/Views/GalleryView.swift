@@ -9,7 +9,7 @@ struct GalleryView: View {
         NavigationStack {
             Group {
                 if viewModel.isLoading {
-                    ProgressView()
+                    LoaderView()
                 } else {
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 20) {
@@ -26,6 +26,7 @@ struct GalleryView: View {
             .navigationDestination(for: Album.self) { album in
                 AlbumDetailView(album: album, transitionNamespace: transitionNamespace)
             }
+            .background(Color("bgColors"))
             .navigationTitle("Astro Gallery")
         }
         .onAppear {
@@ -58,27 +59,37 @@ struct AlbumCoverView: View {
                     .resizable()
                     .scaledToFill()
             } placeholder: {
-                ProgressView()
+                LoaderView()
             }
             .frame(width: 175, height: 175)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .shadow(radius: 5)
             .matchedGeometryEffect(id: album.id, in: namespace)
             
+            VStack {
+                Spacer()
+                
+                LinearGradient(
+                    gradient: Gradient(colors: [.clear, .black.opacity(1)]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .frame(width: 175, height: 100)
+            }
+            
             VStack(alignment: .leading) {
                 Text(album.agency)
                     .font(.caption)
+                    .padding(.horizontal, 1)
                     .bold()
-                    .padding(4)
-                    .background(.ultraThinMaterial)
                     .clipShape(Capsule())
                 
                 Text(album.name)
                     .font(.headline)
-                    .padding(4)
-                    .background(.ultraThinMaterial)
+                    .padding(.bottom, 4)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
             }
+            .foregroundStyle(.white)
             .padding(8)
         }
     }
