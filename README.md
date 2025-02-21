@@ -2,7 +2,6 @@
 
 ![Bildschirmfoto 2025-02-21 um 08 58 27](https://github.com/user-attachments/assets/f3732faf-3d1c-4b92-998d-6f6d7137e5ed)
 
-
 **Explore the Cosmos from Your Pocket**  
 Stellar Horizon is an immersive iOS app that brings the wonders of space to your fingertips. Discover stunning astrophotography, stay updated with the latest space news, track the ISS in real-time, and visualize Earth's climate changes through an interactive 3D globe.
 
