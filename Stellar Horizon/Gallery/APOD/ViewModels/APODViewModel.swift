@@ -13,12 +13,11 @@ class APODViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var error: Error?
     
-    private let apiKey = "dLhdo1rRSlZMpX1Si0g6xjFjNn2BS7cp0Wfhbzti"
     private var cancellables = Set<AnyCancellable>()
     
     func fetchAPOD() {
         isLoading = true
-        let urlString = "https://api.nasa.gov/planetary/apod?api_key=\(apiKey)"
+        let urlString = "https://api.nasa.gov/planetary/apod?api_key=\(apiKeyNASA)"
         
         guard let url = URL(string: urlString) else { return }
         

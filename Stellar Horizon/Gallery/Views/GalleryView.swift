@@ -12,6 +12,13 @@ struct GalleryView: View {
                     LoaderView()
                 } else {
                     ScrollView {
+                        NavigationLink(destination: APODView()) {
+                            APODCoverView(namespace: transitionNamespace)
+//                                .frame(height: 250)
+                                .padding(.horizontal)
+                                .padding(.top)
+                        }
+                        
                         LazyVGrid(columns: columns, spacing: 20) {
                             ForEach(viewModel.albums) { album in
                                 NavigationLink(value: album) {

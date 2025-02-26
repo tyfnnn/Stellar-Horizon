@@ -69,56 +69,37 @@ struct Album: Identifiable, Hashable {
             photos: [],
             photosetId: "72157710082072266"  // Hubble telescope photoset ID
         ),
-        
-        // 
         Album(
-            name: "Hubble Solar System",
+            name: "Hubble's Interracting Galaxies",
             agency: "NASA/ESA",
-            coverImage: "https://live.staticflickr.com/65535/53433104147_666cc3ba49.jpg&quot",
-            description: "The Hubble Space Telescope's view of the planets and other objects orbiting our Sun.",
+            coverImage: "https://live.staticflickr.com/65535/53502097195_afe806d8f2_n.jpg&quot;",
+            description: "Galaxies reshaped by cosmic collisions and interactions, captured by the Hubble Space Telescope",
             photos: [],
-            photosetId: "72157677485228358"  // Hubble telescope photoset ID
-        )
-        ,
-        Album(
-            name: "Hubble Solar System",
-            agency: "NASA/ESA",
-            coverImage: "https://live.staticflickr.com/65535/53433104147_666cc3ba49.jpg&quot",
-            description: "The Hubble Space Telescope's view of the planets and other objects orbiting our Sun.",
-            photos: [],
-            photosetId: "72157677485228358"  // Hubble telescope photoset ID
+            photosetId: "72157690798284953"  // Hubble telescope photoset ID
         ),
         Album(
-            name: "Hubble Solar System",
+            name: "Hubble's Nebulae",
             agency: "NASA/ESA",
-            coverImage: "https://live.staticflickr.com/65535/53433104147_666cc3ba49.jpg&quot",
-            description: "The Hubble Space Telescope's view of the planets and other objects orbiting our Sun.",
+            coverImage: "https://live.staticflickr.com/65535/53680290403_8e1f796ae6_w.jpg&quot;",
+            description: "A Collection of Hubble Nebula Images",
             photos: [],
-            photosetId: "72157677485228358"  // Hubble telescope photoset ID
+            photosetId: "72157661867344528"  // Hubble telescope photoset ID
         ),
         Album(
-            name: "Hubble Solar System",
-            agency: "NASA/ESA",
-            coverImage: "https://live.staticflickr.com/65535/53433104147_666cc3ba49.jpg&quot",
+            name: "Selected Apollo 15 Photos",
+            agency: "NASA",
+            coverImage: "https://live.staticflickr.com/65535/51357005462_97135e04be_w.jpg&quot;",
             description: "The Hubble Space Telescope's view of the planets and other objects orbiting our Sun.",
             photos: [],
-            photosetId: "72157677485228358"  // Hubble telescope photoset ID
+            photosetId: "72157719635893603"  // Hubble telescope photoset ID
         ),
         Album(
-            name: "Hubble Solar System",
-            agency: "NASA/ESA",
-            coverImage: "https://live.staticflickr.com/65535/53433104147_666cc3ba49.jpg&quot",
-            description: "The Hubble Space Telescope's view of the planets and other objects orbiting our Sun.",
+            name: "Earth From Space",
+            agency: "ESA",
+            coverImage: "https://live.staticflickr.com/5052/5496693274_a792025885_w.jpg&quot;",
+            description: "More images of Earth from Space.",
             photos: [],
-            photosetId: "72157677485228358"  // Hubble telescope photoset ID
-        ),
-        Album(
-            name: "Hubble Solar System",
-            agency: "NASA/ESA",
-            coverImage: "https://live.staticflickr.com/65535/53433104147_666cc3ba49.jpg&quot",
-            description: "The Hubble Space Telescope's view of the planets and other objects orbiting our Sun.",
-            photos: [],
-            photosetId: "72157677485228358"  // Hubble telescope photoset ID
+            photosetId: "72157626193417290"  // Hubble telescope photoset ID
         )
     ]
 }

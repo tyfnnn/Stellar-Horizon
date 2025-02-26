@@ -83,6 +83,8 @@ struct AuthenticationView: View {
                         .presentationDetents([.fraction(0.6)])
                 }
             }
+            .ignoresSafeArea(.keyboard, edges: .bottom)
+
         }
     }
 }

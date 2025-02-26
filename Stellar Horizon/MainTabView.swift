@@ -21,19 +21,25 @@ struct MainTabView: View {
             
             GalleryView()
                 .tabItem {
-                    Label("Galerie", systemImage: "camera.aperture")
+                    Label("Gallery", systemImage: "camera.aperture")
                 }
                 .tag(1)
             
+            SatelliteTrackerView()
+                .tabItem {
+                    Label("Satellite Tracker", systemImage: "location.fill")
+                }
+                .tag(2)
+            
             RotatingEarthView()
                 .tabItem {
-                    Label("Rotaing Earth ", systemImage: "globe.europe.africa.fill")
+                    Label("Globe", systemImage: "globe.europe.africa.fill")
                 }
                 .tag(2)
             
             SettingsView()
                 .tabItem {
-                    Label("Einstellungen", systemImage: "gear")
+                    Label("Settings", systemImage: "gear")
                 }
                 .tag(3)
                 .environment(vm)
@@ -43,4 +49,5 @@ struct MainTabView: View {
 
 #Preview {
     MainTabView()
+        .environment(FirebaseViewModel())
 }

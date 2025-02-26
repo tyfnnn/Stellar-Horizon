@@ -13,5 +13,9 @@
 			</array>
 		</dict>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Exo2-VariableFont_wght.ttf</string>
+	</array>
 </dict>
 </plist>
