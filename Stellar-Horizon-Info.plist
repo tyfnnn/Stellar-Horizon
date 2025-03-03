@@ -13,5 +13,12 @@
 			</array>
 		</dict>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Exo2-Thin</string>
+		<string>Exo2-SemiBold.ttf</string>
+		<string>Exo2-Regular.ttf</string>
+		<string>Exo2-Bold.ttf</string>
+	</array>
 </dict>
 </plist>

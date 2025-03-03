@@ -12,11 +12,8 @@ struct PlanetView: View {
     var size: CGFloat
     var orbitRadius: CGFloat
     var speed: Double
-    var name: String
-    var description: String
-    @Binding var selectedPlanet: Planet?
     
-    @State private var angle: Double = Double.random(in: 0..<360) // Zufälliger Startwinkel
+    @State private var angle: Double = Double.random(in: 0..<360) // Random starting angle
     
     var body: some View {
         let timer = Timer.publish(every: 0.02, on: .main, in: .common).autoconnect()
@@ -25,9 +22,6 @@ struct PlanetView: View {
             .fill(color)
             .frame(width: size, height: size)
             .offset(x: orbitRadius * cos(angle), y: orbitRadius * sin(angle))
-            .onTapGesture {
-                selectedPlanet = Planet(color: color, size: size, orbitRadius: orbitRadius, speed: speed, name: name, description: description)
-            }
             .onReceive(timer) { _ in
                 angle += speed / 1000
             }

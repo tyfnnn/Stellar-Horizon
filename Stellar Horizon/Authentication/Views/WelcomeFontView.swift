@@ -29,7 +29,7 @@ struct WelcomeFontView: View {
 
 struct SomeText: View {
     var body: some View {
-        VStack {
+        VStack(spacing: 19) {
             Text("STELLAR")
                 .font(.system(size: 32))
                 .fontWeight(.bold)

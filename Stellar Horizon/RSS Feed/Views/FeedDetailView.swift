@@ -32,7 +32,7 @@ struct FeedDetailView: View {
                 Text(item.pubDate, style: .date)
                     .font(.caption)
                     .foregroundColor(.secondary)
-                
+                   
                 Text(item.description)
                     .font(.body)
                     .padding(.vertical, 8)

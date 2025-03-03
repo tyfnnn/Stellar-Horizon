@@ -30,6 +30,7 @@ Pods/
 
 # Firebase
 GoogleService-Info.plist
+Keys.swift
 
 # fastlane
 fastlane/report.xml
