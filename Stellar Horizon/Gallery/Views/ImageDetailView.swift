@@ -31,7 +31,7 @@ struct ImageDetailView: View {
                 
                 VStack(alignment: .leading, spacing: 8) {
                     Text(photo.title)
-                        .font(.title)
+                        .font(.exo2(fontStyle: .title))
                         .bold()
                     
                     Text(photo.date)
@@ -39,6 +39,7 @@ struct ImageDetailView: View {
                         .foregroundStyle(.secondary)
                     
                     Text(photo.description)
+                        .font(.exo2(fontStyle: .body))
                         .padding(.top, 8)
                     
                     Text("Credit: \(photo.credit)")

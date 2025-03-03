@@ -86,13 +86,13 @@ struct AlbumCoverView: View {
             
             VStack(alignment: .leading) {
                 Text(album.agency)
-                    .font(.caption)
+                    .font(.exo2(fontStyle: .caption))
                     .padding(.horizontal, 1)
                     .bold()
                     .clipShape(Capsule())
                 
                 Text(album.name)
-                    .font(.headline)
+                    .font(.exo2(fontStyle: .headline, fontWeight: .thin))
                     .padding(.bottom, 4)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
             }

@@ -17,13 +17,13 @@ struct FeedView: View {
                     ForEach(FeedCategory.allCategories) { category in
                         VStack(alignment: .leading, spacing: 10) {
                             Text(category.title)
-                                .font(.title)
+                                .font(.exo2(fontStyle: .title, fontWeight: .semibold))
                                 .padding(.horizontal)
                             
                             ForEach(category.subcategories) { subcategory in
                                 VStack(alignment: .leading) {
                                     Text(subcategory.title)
-                                        .font(.headline)
+                                        .font(.exo2(fontStyle: .headline))
                                         .padding(.horizontal)
                                     
                                     ScrollView(.horizontal, showsIndicators: false) {

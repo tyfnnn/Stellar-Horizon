@@ -96,6 +96,8 @@ struct SettingsView: View {
                             }
                         }
                     }
+                    
+                    
 
                 }
                 .scrollContentBackground(.hidden)

@@ -64,13 +64,13 @@ struct APODCoverView: View {
             
             VStack(alignment: .leading) {
                 Text("NASA")
-                    .font(.caption)
+                    .font(.exo2(fontStyle: .caption))
                     .padding(.horizontal, 1)
                     .bold()
                     .clipShape(Capsule())
                 
                 Text("Picture of the Day")
-                    .font(.headline)
+                    .font(.exo2(fontStyle: .headline, fontWeight: .thin))
                     .padding(.bottom, 4)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
             }
