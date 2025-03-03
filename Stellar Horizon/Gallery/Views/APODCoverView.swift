@@ -21,7 +21,7 @@ struct APODCoverView: View {
                         Image(systemName: "play.circle.fill")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: .infinity, height: 200)
+                            .frame(width: .infinity, height: 250)
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color.black)
@@ -39,7 +39,11 @@ struct APODCoverView: View {
                         }
                     }
                 } else if isLoading {
-                    LoaderView()
+                    HStack {
+                        Spacer()
+                        LoaderView()
+                        Spacer()
+                    }
                 } else {
                     Image(systemName: "photo")
                         .resizable()

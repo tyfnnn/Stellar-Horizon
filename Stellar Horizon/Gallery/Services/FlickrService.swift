@@ -5,7 +5,7 @@
 //  Created by Tayfun Ilker on 03.03.25.
 //
 
-import Foundation
+import SwiftUI
 
 class FlickrService {
     func fetchPhotosForAlbum(photosetId: String) async throws -> [AstroPhoto] {

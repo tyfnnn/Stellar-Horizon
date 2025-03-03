@@ -7,9 +7,10 @@
 
 import Foundation
 
+@Observable
 class GalleryViewModel: ObservableObject {
-    @Published var albums: [Album] = []
-    @Published var isLoading = false
+    var albums: [Album] = []
+    var isLoading = false
     
     @MainActor
     func loadAlbums() {

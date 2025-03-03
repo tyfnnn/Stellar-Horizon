@@ -7,9 +7,10 @@
 
 import SwiftUI
 
+@Observable
 class AlbumDetailViewModel: ObservableObject {
-    @Published var photos: [AstroPhoto] = []
-    @Published var isLoading = false
+    var photos: [AstroPhoto] = []
+    var isLoading = false
     private let album: Album
     private let flickrService = FlickrService()
     

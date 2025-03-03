@@ -11,12 +11,12 @@ struct AlbumDetailView: View {
     let album: Album
     let transitionNamespace: Namespace.ID
     @State private var selectedPhoto: AstroPhoto?
-    @StateObject private var viewModel: AlbumDetailViewModel
+    @State private var viewModel: AlbumDetailViewModel
     
     init(album: Album, transitionNamespace: Namespace.ID) {
         self.album = album
         self.transitionNamespace = transitionNamespace
-        _viewModel = StateObject(wrappedValue: AlbumDetailViewModel(album: album))
+        _viewModel = State(wrappedValue: AlbumDetailViewModel(album: album))
     }
     
     var body: some View {
@@ -69,28 +69,6 @@ struct AlbumDetailView: View {
         .task {
             await viewModel.loadPhotos()
         }
-    }
-}
-
-class AlbumDetailViewModel: ObservableObject {
-    @Published var photos: [AstroPhoto] = []
-    @Published var isLoading = false
-    private let album: Album
-    private let flickrService = FlickrService()
-    
-    init(album: Album) {
-        self.album = album
-    }
-    
-    @MainActor
-    func loadPhotos() async {
-        isLoading = true
-        do {
-            photos = try await flickrService.fetchPhotosForAlbum(photosetId: album.photosetId)
-        } catch {
-            print("Error loading photos: \(error)")
-        }
-        isLoading = false
     }
 }
 

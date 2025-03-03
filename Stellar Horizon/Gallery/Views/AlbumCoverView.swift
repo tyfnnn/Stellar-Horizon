@@ -1,3 +1,12 @@
+//
+//  AlbumCoverView.swift
+//  Stellar Horizon
+//
+//  Created by Tayfun Ilker on 03.03.25.
+//
+
+import SwiftUI
+
 struct AlbumCoverView: View {
     let album: Album
     let namespace: Namespace.ID
