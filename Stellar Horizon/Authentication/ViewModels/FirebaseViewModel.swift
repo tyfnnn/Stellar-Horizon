@@ -63,6 +63,7 @@ final class FirebaseViewModel {
         do {
             let result = try await auth.signIn(withEmail: email, password: password)
             user = result.user
+            fetchUser(userID: result.user.uid) 
         } catch {
             errorMessage = error.localizedDescription
             print(error.localizedDescription)

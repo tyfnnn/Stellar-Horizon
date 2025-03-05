@@ -53,6 +53,12 @@ struct LoginFields: View {
             .background(Color.accentColor)
             .foregroundColor(.white)
             .cornerRadius(15)
+            
+            if let errorMessage = vm.errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .font(.caption)
+            }
         }
         .padding(.horizontal)
     }
