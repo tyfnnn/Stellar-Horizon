@@ -21,7 +21,8 @@ struct ImageDetailView: View {
     
     init(photo: AstroPhoto) {
         self.photo = photo
-        self._viewModel = State(wrappedValue: PhotoInteractionViewModel(photo: photo))
+        // Using _viewModel for proper StateObject initialization
+        _viewModel = State(wrappedValue: PhotoInteractionViewModel(photo: photo))
     }
     
     var body: some View {
@@ -136,7 +137,7 @@ struct ImageDetailView: View {
                     }
                 }
             }
-            .onAppear {
+            .task {
                 if let userId = firebaseVM.userID {
                     viewModel.loadInteractions(for: photo, userId: userId)
                 }

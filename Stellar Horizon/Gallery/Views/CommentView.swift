@@ -131,6 +131,9 @@ struct CommentListView: View {
                     .padding(.horizontal)
                     .padding(.vertical, 8)
                 }
+                .onChange(of: viewModel.comments) { _, newComments in
+                    print("Comment list updated: \(newComments.count) comments")
+                }
             }
             
             Divider()
@@ -142,6 +145,7 @@ struct CommentListView: View {
         .background(Color("bgColors"))
         .cornerRadius(16)
         .onAppear {
+            print("CommentListView appeared with \(viewModel.comments.count) comments")
             // Ensure we have the current user ID
             if let userId = firebaseVM.userID {
                 viewModel.loadInteractions(for: viewModel.photo, userId: userId)
@@ -175,7 +179,9 @@ struct CommentEditorView: View {
                         .disabled(viewModel.isSubmittingComment)
                     }
                     
-                    Button(action: viewModel.submitComment) {
+                    Button(action: {
+                        viewModel.submitComment()
+                    }) {
                         Image(systemName: "arrow.up.circle.fill")
                             .font(.title2)
                             .foregroundStyle(.blue)
@@ -213,7 +219,7 @@ struct CommentEditorView: View {
 import Foundation
 import FirebaseFirestore
 
-struct Comment: Identifiable, Codable {
+struct Comment: Identifiable, Codable, Equatable {
     @DocumentID var id: String?
     let photoId: String
     let userId: String
@@ -256,6 +262,19 @@ struct Comment: Identifiable, Codable {
         
         return dict
     }
+    
+    // Implement Equatable
+    static func == (lhs: Comment, rhs: Comment) -> Bool {
+        return lhs.id == rhs.id &&
+               lhs.photoId == rhs.photoId &&
+               lhs.userId == rhs.userId &&
+               lhs.text == rhs.text &&
+               lhs.timestamp == rhs.timestamp &&
+               lhs.edited == rhs.edited &&
+               lhs.lastEditTimestamp == rhs.lastEditTimestamp &&
+               lhs.userName == rhs.userName &&
+               lhs.userProfileImageURL == rhs.userProfileImageURL
+    }
 }
 
 import Foundation
@@ -285,7 +304,6 @@ struct Like: Identifiable, Codable {
 
 import Foundation
 import FirebaseFirestore
-import Combine
 
 class PhotoInteractionService {
     private let db = FirebaseManager.shared.database
@@ -452,7 +470,7 @@ class PhotoInteractionService {
         }
     }
     
-    func getComments(for photoId: String, limit: Int = 20) async -> [Comment] {
+    func getComments(for photoId: String, limit: Int = 50) async -> [Comment] {
         let commentsRef = db.collection("comments")
             .whereField("photo_id", isEqualTo: photoId)
             .order(by: "timestamp", descending: false)
@@ -460,8 +478,18 @@ class PhotoInteractionService {
         
         do {
             let snapshot = try await commentsRef.getDocuments()
+            print("Fetched \(snapshot.documents.count) comments from Firestore")
+            
             return snapshot.documents.compactMap { document in
-                try? document.data(as: Comment.self)
+                do {
+                    var comment = try document.data(as: Comment.self)
+                    // Make sure each comment has its document ID
+                    comment.id = document.documentID
+                    return comment
+                } catch {
+                    print("Error parsing comment document: \(error)")
+                    return nil
+                }
             }
         } catch {
             print("Error getting comments: \(error.localizedDescription)")
@@ -480,8 +508,17 @@ class PhotoInteractionService {
                     return
                 }
                 
-                let comments = documents.compactMap { document in
-                    try? document.data(as: Comment.self)
+                print("Snapshot listener received update with \(documents.count) comments")
+                let comments = documents.compactMap { document -> Comment? in
+                    do {
+                        var comment = try document.data(as: Comment.self)
+                        // Make sure each comment has its document ID
+                        comment.id = document.documentID
+                        return comment
+                    } catch {
+                        print("Error parsing comment in listener: \(error)")
+                        return nil
+                    }
                 }
                 completion(comments)
             }
@@ -546,7 +583,7 @@ class PhotoInteractionViewModel {
         
         // Track photo in Firestore if it's not already there
         Task {
-            if let photoId = currentPhotoId, let userID = currentUserId {
+            if let photoId = currentPhotoId, let _ = currentUserId {
                 await photoInteractionService.trackPhoto(
                     photoId: photoId,
                     albumId: "", // You might want to pass the album ID here
@@ -564,14 +601,22 @@ class PhotoInteractionViewModel {
                 await loadComments()
                 
                 // Listen for comment updates
-                let listener = photoInteractionService.listenForComments(photoId: photoId) { [weak self] comments in
-                    Task { @MainActor in
-                        self?.comments = comments
-                    }
-                }
-                listeners.append(listener)
+                setupCommentListener(photoId: photoId)
             }
         }
+    }
+    
+    private func setupCommentListener(photoId: String) {
+        let listener = photoInteractionService.listenForComments(photoId: photoId) { [weak self] newComments in
+            guard let self = self else { return }
+            
+            // Ensure UI updates happen on the main thread
+            DispatchQueue.main.async {
+                self.comments = newComments
+                print("Comments updated: \(newComments.count) comments")
+            }
+        }
+        listeners.append(listener)
     }
     
     private func loadLikes() async {
@@ -590,7 +635,13 @@ class PhotoInteractionViewModel {
         isLoadingComments = true
         defer { isLoadingComments = false }
         
-        comments = await photoInteractionService.getComments(for: photoId)
+        let fetchedComments = await photoInteractionService.getComments(for: photoId)
+        
+        // Update on main thread
+        await MainActor.run {
+            self.comments = fetchedComments
+            print("Initial comments loaded: \(fetchedComments.count)")
+        }
     }
     
     func toggleLike() {
@@ -642,13 +693,22 @@ class PhotoInteractionViewModel {
                 }
                 
                 // Submit comment
-                let _ = await photoInteractionService.addComment(
+                if let newComment = await photoInteractionService.addComment(
                     photoId: photoId,
                     userId: userId,
                     userName: userName,
                     userProfileImageURL: userProfileImageURL,
                     text: newCommentText
-                )
+                ) {
+                    // Update comments array immediately for responsive UI
+                    await MainActor.run {
+                        // Add the new comment to the array if it's not already there
+                        if !self.comments.contains(where: { $0.id == newComment.id }) {
+                            self.comments.append(newComment)
+                            print("Comment added locally: \(newComment.text)")
+                        }
+                    }
+                }
                 
                 newCommentText = ""
             }
@@ -685,8 +745,11 @@ class PhotoInteractionViewModel {
         Task {
             let success = await photoInteractionService.deleteComment(commentId: commentId, photoId: photoId)
             if success {
-                if let index = comments.firstIndex(where: { $0.id == commentId }) {
-                    comments.remove(at: index)
+                await MainActor.run {
+                    if let index = comments.firstIndex(where: { $0.id == commentId }) {
+                        comments.remove(at: index)
+                        print("Comment deleted locally: \(commentId)")
+                    }
                 }
             }
         }
