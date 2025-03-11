@@ -51,7 +51,6 @@ struct APODCoverView: View {
                         .foregroundColor(.gray)
                 }
             }
-//            .frame(maxWidth: .infinity)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .shadow(radius: 5)
             .matchedGeometryEffect(id: "APOD", in: namespace)
@@ -63,7 +62,6 @@ struct APODCoverView: View {
                     startPoint: .top,
                     endPoint: .bottom
                 )
-//                .frame(width: .infinity, height: 200)
             }
             
             VStack(alignment: .leading) {

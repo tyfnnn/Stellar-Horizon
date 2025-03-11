@@ -35,13 +35,13 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Globe", systemImage: "globe.europe.africa.fill")
                 }
-                .tag(2)
+                .tag(3)
             
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
-                .tag(3)
+                .tag(4)
                 .environment(vm)
         }
     }

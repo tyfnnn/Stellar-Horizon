@@ -10,7 +10,6 @@ import SwiftUI
 struct FeedItemCard: View {
     let item: FeedItem
     
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             ZStack {

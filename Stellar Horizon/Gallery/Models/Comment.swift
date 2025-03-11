@@ -53,7 +53,6 @@ struct Comment: Identifiable, Codable, Equatable {
         return dict
     }
     
-    // Implement Equatable
     static func == (lhs: Comment, rhs: Comment) -> Bool {
         return lhs.id == rhs.id &&
                lhs.photoId == rhs.photoId &&

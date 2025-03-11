@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeedView: View {
-    @StateObject private var loader = FeedLoader()
+    @State private var loader = FeedLoader()
     
     var body: some View {
         NavigationStack {

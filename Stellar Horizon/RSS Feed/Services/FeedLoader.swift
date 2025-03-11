@@ -8,10 +8,11 @@
 import Foundation
 import FeedKit
 
-class FeedLoader: ObservableObject {
-    @Published var items = [FeedItem]()
-    @Published var isLoading = false
-    @Published var error: String?
+@Observable
+class FeedLoader {
+    var items = [FeedItem]()
+    var isLoading = false
+    var error: String?
 
     func loadAllFeeds() {
         isLoading = true
