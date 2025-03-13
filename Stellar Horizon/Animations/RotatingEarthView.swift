@@ -1,5 +1,5 @@
 //
-//  RotatingEarthView2.swift
+//  RotatingEarthView.swift
 //  Stellar Horizon
 //
 //  Created by Tayfun Ilker on 11.02.25.
@@ -12,7 +12,7 @@ struct RotatingEarthView: View {
     @State private var selectedTexture = "world-map"
     
     struct TextureOption {
-        let id: String 
+        let id: String
         let title: String
     }
     
@@ -25,25 +25,50 @@ struct RotatingEarthView: View {
     ]
     
     var body: some View {
-        ZStack {
-            EarthSceneView(selectedTexture: selectedTexture)
-                .ignoresSafeArea()
-            
-            VStack {
-                Spacer()
-                Picker("Earth View", selection: $selectedTexture) {
-                    ForEach(textureOptions, id: \.id) { option in
-                        Text(option.title)
+        NavigationStack {
+            ZStack {
+                EarthSceneView(selectedTexture: selectedTexture)
+                    .ignoresSafeArea()
+                
+                VStack {
+                    // Add navigation button to temperature chart
+                    HStack {
+                        Spacer()
+                        
+                        NavigationLink(destination: TemperatureChartView()) {
+                            HStack {
+                                Image(systemName: "chart.line.uptrend.xyaxis")
+                                Text("Temperature Data")
+                            }
                             .foregroundColor(.white)
-                            .tag(option.id)
+                            .padding(12)
+                            .background(Color.black.opacity(0.6))
+                            .cornerRadius(10)
+                            .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
+                        }
+                        .padding()
                     }
+                    
+                    Spacer()
+                    
+                    Picker("Earth View", selection: $selectedTexture) {
+                        ForEach(textureOptions, id: \.id) { option in
+                            Text(option.title)
+                                .foregroundColor(.white)
+                                .tag(option.id)
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                    .padding()
+                    .background(Color.black.opacity(0.6))
+                    .cornerRadius(10)
+                    .foregroundColor(.white)
                 }
-                .pickerStyle(.wheel)
-                .padding()
-                .background(Color.white.opacity(0.1))
-                .cornerRadius(10)
-                .foregroundColor(.black)
             }
+            .background(Color("bgColors"))
+            .navigationTitle("Earth View")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarHidden(true)
         }
     }
 }

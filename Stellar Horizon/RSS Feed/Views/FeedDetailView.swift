@@ -45,5 +45,6 @@ struct FeedDetailView: View {
             .padding()
         }
         .navigationTitle(category.title)
+        .background(Color("bgColors"))
     }
 }
