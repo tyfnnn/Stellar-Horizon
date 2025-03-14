@@ -31,10 +31,16 @@ final class FirebaseViewModel {
         do {
             let result = try await auth.signInAnonymously()
             user = result.user
+
+            firestoreUser = nil
         } catch {
             errorMessage = error.localizedDescription
-            print("Error")
+            print("Error signing in anonymously: \(error.localizedDescription)")
         }
+    }
+    
+    func isAnonymousUser() -> Bool {
+        return FirebaseManager.shared.auth.currentUser?.isAnonymous ?? false
     }
     
     func signUp(
@@ -63,11 +69,39 @@ final class FirebaseViewModel {
         do {
             let result = try await auth.signIn(withEmail: email, password: password)
             user = result.user
-            fetchUser(userID: result.user.uid) 
+            
+            // Fetch the user's profile data immediately after sign-in
+            let uid = result.user.uid
+            
+            // First check if the user profile exists
+            let snapshot = try? await FirebaseManager.shared.database
+                .collection("users").document(uid).getDocument()
+            
+            if let snapshot = snapshot, !snapshot.exists {
+                // Create a new user profile if it doesn't exist
+                let userProfile = FirestoreUser(
+                    id: uid,
+                    email: email,
+                    name: email.components(separatedBy: "@").first ?? "User",
+                    birthDate: Date(),
+                    gender: .preferNotToSay
+                )
+                
+                try? await FirebaseManager.shared.database
+                    .collection("users").document(uid)
+                    .setData(userProfile.dictionary)
+            }
+            
+            // Then fetch user data to load it into the view model
+            fetchUser(userID: uid)
         } catch {
             errorMessage = error.localizedDescription
             print(error.localizedDescription)
         }
+    }
+    
+    func getUserEmail() -> String? {
+        return FirebaseManager.shared.auth.currentUser?.email
     }
     
     func signInWithGoogle() async {
@@ -119,10 +153,10 @@ final class FirebaseViewModel {
         do {
             try auth.signOut()
             user = nil
+            firestoreUser = nil
         } catch {
             errorMessage = error.localizedDescription
         }
-        
     }
     
     private func createUser(

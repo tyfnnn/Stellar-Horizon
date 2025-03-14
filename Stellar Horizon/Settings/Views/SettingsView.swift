@@ -13,15 +13,8 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     
     // App appearance settings
-    @AppStorage("isDarkMode") private var isDarkMode: Bool = true
     @AppStorage("appTheme") private var appTheme: AppTheme = .cosmos
     @AppStorage("fontSize") private var fontSize: Double = 1.0
-    
-    // App preferences
-    @AppStorage("startupScreen") private var startupScreen: StartupScreen = .spaceNews
-    @AppStorage("appLanguage") private var appLanguage: String = "English"
-    @AppStorage("distanceUnit") private var distanceUnit: DistanceUnit = .kilometers
-    @AppStorage("temperatureUnit") private var temperatureUnit: TemperatureUnit = .celsius
     
     // Notification settings
     @AppStorage("notificationsEnabled") private var notificationsEnabled: Bool = false
@@ -30,56 +23,100 @@ struct SettingsView: View {
     @AppStorage("quietHoursStart") private var quietHoursStart: Int = 22
     @AppStorage("quietHoursEnd") private var quietHoursEnd: Int = 7
     
-    // Media settings
-    @AppStorage("downloadOverCellular") private var downloadOverCellular: Bool = false
-    @AppStorage("imageQuality") private var imageQuality: ImageQuality = .high
-    @AppStorage("autoplayVideos") private var autoplayVideos: Bool = true
-    
     // State variables
-    @State private var selectedLanguage: String = "English"
     @State private var selectedPhotoItem: PhotosPickerItem?
     @State private var profileImage: UIImage?
     @State private var isShowingDeleteAccountAlert = false
     @State private var isShowingClearCacheAlert = false
     @State private var cacheSize: String = "Calculating..."
     
-    let languages = ["English", "Español", "Français", "Deutsch", "中文", "日本語", "Русский", "العربية"]
+    // Modified to simply check if we should show the profile section
+    private var shouldShowProfile: Bool {
+        return !isAnonymous && vm.firestoreUser != nil
+    }
     
+    // Check if user is anonymous
+    private var isAnonymous: Bool {
+        return vm.isAnonymousUser()
+    }
+        
     var body: some View {
         NavigationStack {
             List {
-                // PROFILE SECTION
-                Section {
-                    if let firestoreUser = vm.firestoreUser {
-                        ProfileHeaderView(
-                            user: firestoreUser,
-                            selectedPhotoItem: $selectedPhotoItem,
-                            profileImage: $profileImage
-                        )
-                        
-                        NavigationLink {
-                            EditProfileView(vm: vm)
-                        } label: {
-                            Label("Edit Profile", systemImage: "person.text.rectangle")
-                        }
-                    } else {
-                        ProgressView()
+                // PROFILE SECTION - Only shown for non-anonymous users with profile data
+                if !isAnonymous {
+                    Section {
+                        if let firestoreUser = vm.firestoreUser {
+                            ProfileHeaderView(
+                                user: firestoreUser,
+                                selectedPhotoItem: $selectedPhotoItem,
+                                profileImage: $profileImage
+                            )
+                            
+                            NavigationLink {
+                                EditProfileView(vm: vm)
+                            } label: {
+                                Label("Edit Profile", systemImage: "person.text.rectangle")
+                            }
+                        } else {
+                            VStack(spacing: 12) {
+                                ProgressView()
+                                    .padding(.bottom, 4)
+                                
+                                Text("Loading profile information...")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
                             .frame(maxWidth: .infinity)
                             .padding()
+                        }
+                    } header: {
+                        Text("Profile")
+                    } footer: {
+                        if let email = vm.getUserEmail(), !isAnonymous {
+                            Text("Signed in as \(email)")
+                        } else if isAnonymous {
+                            Text("Signed in anonymously")
+                        }
                     }
-                } header: {
-                    Text("Profile")
-                } footer: {
-                    if let email = vm.firestoreUser?.email {
-                        Text("Signed in as \(email)")
+                } else {
+                    // For anonymous users, show upgrade option
+                    Section {
+                        VStack(alignment: .center, spacing: 12) {
+                            Image(systemName: "person.fill.questionmark")
+                                .font(.system(size: 50))
+                                .foregroundColor(.gray)
+                                .padding(.bottom, 8)
+                            
+                            Text("Anonymous Account")
+                                .font(.headline)
+                            
+                            Text("Create an account to save your preferences and favorites across devices.")
+                                .font(.caption)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.secondary)
+                            
+                            Button(action: {
+                                // Logic to upgrade anonymous account would go here
+                            }) {
+                                Text("Create Account")
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 8)
+                                    .background(Color.accentColor)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
+                            .padding(.top, 8)
+                        }
+                        .padding(.vertical, 12)
+                        .frame(maxWidth: .infinity)
+                    } header: {
+                        Text("Account")
                     }
                 }
                 
                 // APPEARANCE
                 Section {
-                    Toggle("Dark Mode", isOn: $isDarkMode)
-                        .tint(.blue)
-                    
                     Picker("App Theme", selection: $appTheme) {
                         ForEach(AppTheme.allCases, id: \.self) { theme in
                             Text(theme.displayName).tag(theme)
@@ -108,35 +145,6 @@ struct SettingsView: View {
                     Label("Appearance", systemImage: "paintpalette")
                 }
                 
-                // PREFERENCES
-                Section {
-                    Picker("Default Screen", selection: $startupScreen) {
-                        ForEach(StartupScreen.allCases, id: \.self) { screen in
-                            Text(screen.displayName).tag(screen)
-                        }
-                    }
-                    
-                    Picker("Language", selection: $appLanguage) {
-                        ForEach(languages, id: \.self) { language in
-                            Text(language).tag(language)
-                        }
-                    }
-                    
-                    Picker("Distance Unit", selection: $distanceUnit) {
-                        ForEach(DistanceUnit.allCases, id: \.self) { unit in
-                            Text(unit.displayName).tag(unit)
-                        }
-                    }
-                    
-                    Picker("Temperature Unit", selection: $temperatureUnit) {
-                        ForEach(TemperatureUnit.allCases, id: \.self) { unit in
-                            Text(unit.displayName).tag(unit)
-                        }
-                    }
-                } header: {
-                    Label("Preferences", systemImage: "gear")
-                }
-                
                 // NOTIFICATIONS
                 Section {
                     Toggle("Enable Notifications", isOn: $notificationsEnabled)
@@ -158,33 +166,6 @@ struct SettingsView: View {
                     Label("Notifications", systemImage: "bell")
                 }
                 
-                // MEDIA & STORAGE
-                Section {
-                    Toggle("Download Over Cellular", isOn: $downloadOverCellular)
-                        .tint(.blue)
-                    
-                    Picker("Image Quality", selection: $imageQuality) {
-                        ForEach(ImageQuality.allCases, id: \.self) { quality in
-                            Text(quality.displayName).tag(quality)
-                        }
-                    }
-                    
-                    Toggle("Autoplay Videos", isOn: $autoplayVideos)
-                        .tint(.blue)
-                    
-                    Button(action: showClearCacheAlert) {
-                        HStack {
-                            Label("Clear Cache", systemImage: "trash")
-                            Spacer()
-                            Text(cacheSize)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                    .foregroundStyle(.red)
-                } header: {
-                    Label("Media & Storage", systemImage: "photo.stack")
-                }
-                
                 // ABOUT APP
                 Section {
                     NavigationLink {
@@ -204,6 +185,23 @@ struct SettingsView: View {
                     Label("About", systemImage: "doc.text")
                 }
                 
+                // CACHE MANAGEMENT
+                Section {
+                    HStack {
+                        Text("Cache Size")
+                        Spacer()
+                        Text(cacheSize)
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    Button(action: showClearCacheAlert) {
+                        Label("Clear Cache", systemImage: "trash")
+                    }
+                    .foregroundStyle(.red)
+                } header: {
+                    Label("Storage", systemImage: "internaldrive")
+                }
+                
                 // ACCOUNT ACTIONS
                 Section {
                     Button(action: signOut) {
@@ -211,10 +209,12 @@ struct SettingsView: View {
                     }
                     .foregroundStyle(.red)
                     
-                    Button(action: showDeleteAccountAlert) {
-                        Label("Delete Account", systemImage: "person.crop.circle.badge.minus")
+                    if !isAnonymous {
+                        Button(action: showDeleteAccountAlert) {
+                            Label("Delete Account", systemImage: "person.crop.circle.badge.minus")
+                        }
+                        .foregroundStyle(.red)
                     }
-                    .foregroundStyle(.red)
                 } header: {
                     Label("Account", systemImage: "person.crop.circle")
                 } footer: {
@@ -223,10 +223,16 @@ struct SettingsView: View {
                         .foregroundStyle(.secondary)
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(Color("bgColors"))
             .navigationTitle("Settings")
             .onAppear {
+                // For both anonymous and regular users, only fetch if there's a userID
                 if let userID = vm.userID {
-                    vm.fetchUser(userID: userID)
+                    // For anonymous users, we won't load previous profile data
+                    if !isAnonymous {
+                        vm.fetchUser(userID: userID)
+                    }
                 }
                 calculateCacheSize()
             }
