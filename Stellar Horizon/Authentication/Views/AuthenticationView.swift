@@ -33,23 +33,39 @@ struct AuthenticationView: View {
                 Spacer()
                 
                 LoginFields(usernameInput: $email, passwordInput: $password)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 8)
                     .environment(vm)
                 
-                VStack(spacing: 12) {
-                    AuthenticationButton(
-                        icon: "anonym",
-                        text: "Sign in anonymously",
-                        isSystemIcon: false,
-                        foregroundColor: .white,
-                        backgroundColor: .green
-                    ) {
-                        Task {
-                            await vm.signInAnonymously()
-                        }
-                        print("Signed in anonymously")
+                Button {
+                    showRegisterView.toggle()
+                } label: {
+                    HStack {
+                        Text("Don't have an account? Sign Up")
+                            .foregroundColor(.accentColor)
                     }
-                    
+                }
+                .font(.subheadline)
+                .padding(.horizontal)
+                
+                Text("or")
+                    .font(.subheadline)
+                
+                Button {
+                    Task {
+                        await vm.signInAnonymously()
+                    }
+                    print("Signed in anonymously")
+                } label: {
+                    HStack {
+                        Text("Sign in anonymously")
+                            .foregroundColor(.accentColor)
+                    }
+                }
+                .font(.subheadline)
+                .padding(.horizontal)
+                .padding(.bottom)
+                
+                VStack(spacing: 12) {
                     AuthenticationButton(
                         icon: "google",
                         text: "Sign up with Google",
@@ -62,21 +78,6 @@ struct AuthenticationView: View {
                         }
                     }
                     
-                    Button {
-                        showRegisterView.toggle()
-                    } label: {
-                        HStack {
-                            Text("Don't have an account? Sign Up")
-                                .foregroundColor(.white)
-                        }
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                        )
-                    }
-                    .padding(.horizontal)
                 }
                 .sheet(isPresented: $showRegisterView) {
                     RegisterView(vm: vm, email: $email, password: $password)
@@ -84,7 +85,7 @@ struct AuthenticationView: View {
                 }
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
-
+            
         }
     }
 }

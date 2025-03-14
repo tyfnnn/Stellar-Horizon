@@ -62,7 +62,9 @@ struct RegisterView: View {
                         .padding()
                 }
             }
+            .navigationTitle("Register")
             .padding()
+            .background(Color("bgColors").opacity(0.5))
         }
     }
 }
