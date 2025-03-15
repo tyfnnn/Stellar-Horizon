@@ -479,7 +479,7 @@ struct EnhancedRangeSlider: View {
                 Capsule()
                     .fill(Color.accentColor)
                     .frame(
-                        width: calculateWidth(in: geometry),
+                        width: max(0, calculateWidth(in: geometry)),
                         height: trackHeight
                     )
                     .offset(x: calculateLowerThumbPosition(in: geometry))
