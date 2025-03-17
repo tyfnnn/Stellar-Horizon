@@ -13,9 +13,9 @@ struct FeedView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 4) {
                     ForEach(FeedCategory.allCategories) { category in
-                        VStack(alignment: .leading, spacing: 10) {
+                        VStack(alignment: .leading, spacing: 12) {
                             Text(category.title)
                                 .font(.exo2(fontStyle: .title, fontWeight: .semibold))
                                 .padding(.horizontal)
@@ -27,7 +27,7 @@ struct FeedView: View {
                                         .padding(.horizontal)
                                     
                                     ScrollView(.horizontal, showsIndicators: false) {
-                                        LazyHStack(spacing: 15) {
+                                        LazyHStack(spacing: 12) {
                                             let items = loader.items.filter {
                                                 $0.subcategoryURL == subcategory.url
                                             }

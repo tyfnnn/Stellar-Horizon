@@ -18,7 +18,7 @@ struct GalleryView: View {
                                 .padding(.top)
                         }
                         
-                        LazyVGrid(columns: columns, spacing: 20) {
+                        LazyVGrid(columns: columns, spacing: 14) {
                             ForEach(viewModel.albums) { album in
                                 NavigationLink(value: album) {
                                     AlbumCoverView(album: album, namespace: transitionNamespace)
