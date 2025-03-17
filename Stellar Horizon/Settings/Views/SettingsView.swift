@@ -27,6 +27,9 @@ struct SettingsView: View {
     @State private var selectedPhotoItem: PhotosPickerItem?
     @State private var profileImage: UIImage?
     @State private var isShowingDeleteAccountAlert = false
+    @State private var deleteAccountPassword: String = ""
+    @State private var showDeleteConfirmation = false
+    @State private var showDeleteError = false
     @State private var isShowingClearCacheAlert = false
     @State private var cacheSize: String = "Calculating..."
     
@@ -178,7 +181,7 @@ struct SettingsView: View {
                         Label("Help & Support", systemImage: "questionmark.circle")
                     }
                     
-                    Link(destination: URL(string: "https://stellarhorizon.app/privacy")!) {
+                    Link(destination: URL(string: "https://stellarhorizon.visual-stories.de/privacy-policy.html")!) {
                         Label("Privacy Policy", systemImage: "hand.raised")
                     }
                 } header: {
@@ -236,6 +239,44 @@ struct SettingsView: View {
                 }
                 calculateCacheSize()
             }
+            .sheet(isPresented: $showDeleteConfirmation) {
+                NavigationStack {
+                    VStack(spacing: 20) {
+                        Text("Confirm Account Deletion")
+                            .font(.headline)
+                            .padding(.top)
+                        
+                        Text("Please enter your password to confirm deletion of your account. This action cannot be undone.")
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal)
+                        
+                        SecureField("Password", text: $deleteAccountPassword)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal)
+                        
+                        HStack(spacing: 20) {
+                            Button("Cancel") {
+                                showDeleteConfirmation = false
+                                deleteAccountPassword = ""
+                            }
+                            .buttonStyle(.bordered)
+                            
+                            Button("Delete Account") {
+                                showDeleteConfirmation = false
+                                deleteAccount()
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .tint(.red)
+                            .disabled(deleteAccountPassword.isEmpty)
+                        }
+                        .padding(.bottom)
+                    }
+                    .padding()
+                    .navigationTitle("Delete Account")
+                    .navigationBarTitleDisplayMode(.inline)
+                }
+            }
             .alert("Clear Cache", isPresented: $isShowingClearCacheAlert) {
                 Button("Cancel", role: .cancel) {}
                 Button("Clear", role: .destructive) {
@@ -251,6 +292,13 @@ struct SettingsView: View {
                 }
             } message: {
                 Text("This will permanently delete your account and all associated data. This action cannot be undone.")
+            }
+            .alert("Error", isPresented: $showDeleteError) {
+                Button("OK", role: .cancel) {
+                    showDeleteError = false
+                }
+            } message: {
+                Text(vm.errorMessage ?? "An error occurred while trying to delete your account. Please try again.")
             }
             .onChange(of: selectedPhotoItem) { _, newValue in
                 if let newValue {
@@ -314,10 +362,19 @@ struct SettingsView: View {
         vm.signOut()
     }
     
-    private func deleteAccount() {
-        // In a real app, this would delete the user's account
-        // For now, just sign out
-        vm.signOut()
+    func deleteAccount() {
+        Task {
+            let success = await vm.deleteAccount()
+            if success {
+                // Account successfully deleted, user already signed out
+                print("Account successfully deleted")
+            } else {
+                // Handle error - show alert with vm.errorMessage
+                isShowingDeleteAccountAlert = false
+                // In a complete implementation, we would show an error alert here
+                print("Failed to delete account: \(vm.errorMessage ?? "Unknown error")")
+            }
+        }
     }
     
     private func showClearCacheAlert() {

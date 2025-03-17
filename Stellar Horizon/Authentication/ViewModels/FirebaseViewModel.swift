@@ -195,6 +195,70 @@ final class FirebaseViewModel {
             }
         }
     }
+    
+    // Re-authenticate the user before sensitive operations
+    func reauthenticateAndDeleteAccount(password: String) async -> Bool {
+        guard let currentUser = auth.currentUser, let email = currentUser.email else {
+            errorMessage = "No user is currently signed in or email is missing"
+            return false
+        }
+        
+        do {
+            // Create credential
+            let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+            
+            // Reauthenticate
+            try await currentUser.reauthenticate(with: credential)
+            
+            // If reauthentication succeeded, delete the account
+            return await deleteAccount()
+        } catch {
+            errorMessage = "Authentication failed: \(error.localizedDescription)"
+            return false
+        }
+    }
+    
+    func deleteAccount() async -> Bool {
+        guard let currentUser = auth.currentUser else {
+            errorMessage = "No user is currently signed in"
+            return false
+        }
+        
+        do {
+            // Delete user data from Firestore
+            if let userId = userID {
+                // Delete user document
+                try await FirebaseManager.shared.database.collection("users").document(userId).delete()
+                
+                // Delete user's likes
+                let likesQuery = FirebaseManager.shared.database.collection("likes").whereField("user_id", isEqualTo: userId)
+                let likesSnapshot = try await likesQuery.getDocuments()
+                for document in likesSnapshot.documents {
+                    try await document.reference.delete()
+                }
+                
+                // Delete user's comments
+                let commentsQuery = FirebaseManager.shared.database.collection("comments").whereField("user_id", isEqualTo: userId)
+                let commentsSnapshot = try await commentsQuery.getDocuments()
+                for document in commentsSnapshot.documents {
+                    try await document.reference.delete()
+                }
+            }
+            
+            // Delete user from Firebase Authentication
+            try await currentUser.delete()
+            
+            // Clear local state
+            user = nil
+            firestoreUser = nil
+            
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            print("Error deleting account: \(error.localizedDescription)")
+            return false
+        }
+    }
 }
 
 struct ApplicationUtility {
