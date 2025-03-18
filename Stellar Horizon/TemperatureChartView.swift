@@ -133,6 +133,7 @@ class TemperatureViewModel: ObservableObject {
         
         guard let date = calendar.date(from: dateComponents) else { return }
         
+        // This is a comment
         // Parse monthly data
         if components.count >= 4 {
             let monthlyAnomaly = Double(components[2]) ?? 0
