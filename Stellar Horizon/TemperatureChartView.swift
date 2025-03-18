@@ -343,6 +343,7 @@ struct TemperatureChartView: View {
                         Text(chartTitle)
                             .font(.headline)
                             .padding(.top)
+                            .padding(.horizontal)
                         
                         // Main Chart
                         Chart {
