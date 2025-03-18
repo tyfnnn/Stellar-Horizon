@@ -9,6 +9,7 @@ import Observation
 import FirebaseAuth
 import GoogleSignIn
 import FirebaseCore
+import FirebaseFirestore
 
 @MainActor
 @Observable
@@ -40,7 +41,51 @@ final class FirebaseViewModel {
     }
     
     func isAnonymousUser() -> Bool {
-        return FirebaseManager.shared.auth.currentUser?.isAnonymous ?? false
+        return auth.currentUser?.isAnonymous ?? false
+    }
+    
+    func upgradeAnonymousAccount(
+        email: String,
+        password: String,
+        name: String,
+        displayName: String?,
+        birthDate: Date,
+        gender: FirestoreUser.Gender
+    ) async {
+        guard let currentUser = auth.currentUser, currentUser.isAnonymous else {
+            errorMessage = "No anonymous user to upgrade"
+            return
+        }
+        
+        do {
+            // Create email credential
+            let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+            
+            // Link the anonymous user with the email credential
+            let result = try await currentUser.link(with: credential)
+            
+            // Update the user reference
+            user = result.user
+            
+            // Create or update user profile in Firestore
+            await createUser(
+                userID: result.user.uid,
+                email: email,
+                name: name,
+                birthDate: birthDate,
+                gender: gender,
+                displayName: displayName
+            )
+            
+            // Update the user information
+            if let userId = userID {
+                fetchUser(userID: userId)
+            }
+            
+        } catch {
+            errorMessage = error.localizedDescription
+            print("Error upgrading anonymous account: \(error.localizedDescription)")
+        }
     }
     
     func signUp(
@@ -164,21 +209,29 @@ final class FirebaseViewModel {
         email: String,
         name: String,
         birthDate: Date,
-        gender: FirestoreUser.Gender
+        gender: FirestoreUser.Gender,
+        displayName: String? = nil
     ) async {
-        let user = FirestoreUser(
-            id: userID,
-            email: email,
-            name: name,
-            birthDate: birthDate,
-            gender: gender
-        )
+        var userData: [String: Any] = [
+            "email": email,
+            "name": name,
+            "birth_date": birthDate,
+            "gender": gender.rawValue,
+            "created_at": FieldValue.serverTimestamp(),
+            "last_updated": FieldValue.serverTimestamp()
+        ]
+        
+        // Add optional fields if present
+        if let displayName = displayName {
+            userData["display_name"] = displayName
+        }
         
         do {
-            try FirebaseManager.shared.database.collection("users").document(userID).setData(from: user)
+            try await FirebaseManager.shared.database.collection("users").document(userID).setData(userData)
             fetchUser(userID: userID)
         } catch {
-            print(error.localizedDescription)
+            print("Error creating user: \(error.localizedDescription)")
+            errorMessage = error.localizedDescription
         }
     }
     
