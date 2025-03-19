@@ -6,6 +6,9 @@
 
 Stellar Horizon transforms your iOS device into a portal to the cosmos. With stunning visuals, real-time data, and interactive features, this app brings the wonders of space exploration directly to your fingertips.
 
+**Website:** [stellarhorizon.app](https://stellarhorizon.visual-stories.de)  
+**See it in action:** [Watch Demo on Instagram](https://instagram.com/your_instagram_reel_link)
+
 ## ✨ Key Features
 
 ### 🔭 Astronomy Gallery
