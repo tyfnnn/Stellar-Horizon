@@ -44,7 +44,7 @@ struct AlbumCoverView: View {
                     .clipShape(Capsule())
                 
                 Text(album.name)
-                    .font(.exo2(fontStyle: .headline, fontWeight: .thin))
+                    .font(.exo2(fontStyle: .headline, fontWeight: .regular))
                     .padding(.bottom, 4)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
             }

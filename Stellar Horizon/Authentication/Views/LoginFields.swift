@@ -49,6 +49,7 @@ struct LoginFields: View {
                     await vm.signIn(email: usernameInput, password: passwordInput)
                 }
             }
+            .font(.exo2(fontStyle: .headline, fontWeight: .semibold))
             .padding()
             .background(Color.accentColor)
             .foregroundColor(.white)

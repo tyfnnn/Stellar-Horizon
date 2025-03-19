@@ -47,7 +47,6 @@ struct MainTabView: View {
     }
 }
 
-// a comment
 #Preview {
     MainTabView()
         .environment(FirebaseViewModel())

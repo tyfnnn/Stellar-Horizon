@@ -72,7 +72,7 @@ struct APODCoverView: View {
                     .clipShape(Capsule())
                 
                 Text("Picture of the Day")
-                    .font(.exo2(fontStyle: .headline, fontWeight: .thin))
+                    .font(.exo2(fontStyle: .headline, fontWeight: .regular))
                     .padding(.bottom, 4)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
             }

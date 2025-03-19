@@ -41,6 +41,7 @@ struct AuthenticationView: View {
                 } label: {
                     HStack {
                         Text("Don't have an account? Sign Up")
+                            .font(.exo2(fontStyle: .callout, fontWeight: .regular))
                             .foregroundColor(.accentColor)
                     }
                 }
@@ -58,6 +59,7 @@ struct AuthenticationView: View {
                 } label: {
                     HStack {
                         Text("Sign in anonymously")
+                            .font(.exo2(fontStyle: .callout, fontWeight: .regular))
                             .foregroundColor(.accentColor)
                     }
                 }

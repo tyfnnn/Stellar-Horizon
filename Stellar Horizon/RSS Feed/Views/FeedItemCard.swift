@@ -57,7 +57,7 @@ struct FeedItemCard: View {
                 VStack {
                     Spacer()
                     Text(item.title)
-                        .font(.subheadline)
+                        .font(.exo2(fontStyle: .headline, fontWeight: .regular))
                         .foregroundStyle(.white)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
