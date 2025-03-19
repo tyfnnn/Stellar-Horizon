@@ -52,4 +52,17 @@ struct FirestoreUser: Identifiable, Codable {
             "last_updated": FieldValue.serverTimestamp()
         ]
     }
+    
+    func getSerializableDictionary() -> [String: Any] {
+        return [
+            "email": email,
+            "name": name,
+            "birth_date": birthDate,
+            "gender": gender.rawValue,
+            "display_name": displayName as Any,
+            "profile_image_url": profileImageURL as Any,
+            "created_at": FieldValue.serverTimestamp(),
+            "last_updated": FieldValue.serverTimestamp()
+        ]
+    }
 }

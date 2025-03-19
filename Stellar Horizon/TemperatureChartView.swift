@@ -23,14 +23,15 @@ struct TemperatureAnomaly: Identifiable {
 }
 
 // View model to handle data loading and processing
-class TemperatureViewModel: ObservableObject {
-    @Published var temperatureData: [TemperatureAnomaly] = []
-    @Published var selectedType: TemperatureAnomaly.DataType = .air
-    @Published var selectedTimeSpan: TimeSpan = .annual
-    @Published var isLoading = false
-    @Published var minYear: Int = 1950
-    @Published var maxYear: Int = 2030
-    @Published var yearRange: ClosedRange<Int> = 1950...2024
+@Observable
+class TemperatureViewModel {
+    var temperatureData: [TemperatureAnomaly] = []
+    var selectedType: TemperatureAnomaly.DataType = .air
+    var selectedTimeSpan: TimeSpan = .annual
+    var isLoading = false
+    var minYear: Int = 1950
+    var maxYear: Int = 2030
+    var yearRange: ClosedRange<Int> = 1950...2024
     
     enum TimeSpan: String, CaseIterable {
         case monthly = "Monthly"
@@ -327,7 +328,7 @@ class TemperatureViewModel: ObservableObject {
 }
 
 struct TemperatureChartView: View {
-    @StateObject private var viewModel = TemperatureViewModel()
+    @State private var viewModel = TemperatureViewModel()
     @State private var showUncertainty = true
     
     private var chartTitle: String {

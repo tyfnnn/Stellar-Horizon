@@ -8,10 +8,11 @@
 import SwiftUI
 import Combine
 
-class APODViewModel: ObservableObject {
-    @Published var apod: APODResponse?
-    @Published var isLoading = false
-    @Published var error: Error?
+@Observable
+class APODViewModel {
+    var apod: APODResponse?
+    var isLoading = false
+    var error: Error?
     
     private var cancellables = Set<AnyCancellable>()
     

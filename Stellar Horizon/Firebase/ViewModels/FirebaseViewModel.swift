@@ -204,6 +204,7 @@ final class FirebaseViewModel {
         }
     }
     
+    // Fixed createUser method to be Sendable-compliant
     private func createUser(
         userID: String,
         email: String,
@@ -212,22 +213,27 @@ final class FirebaseViewModel {
         gender: FirestoreUser.Gender,
         displayName: String? = nil
     ) async {
-        var userData: [String: Any] = [
-            "email": email,
-            "name": name,
-            "birth_date": birthDate,
-            "gender": gender.rawValue,
-            "created_at": FieldValue.serverTimestamp(),
-            "last_updated": FieldValue.serverTimestamp()
-        ]
-        
-        // Add optional fields if present
-        if let displayName = displayName {
-            userData["display_name"] = displayName
-        }
-        
         do {
-            try await FirebaseManager.shared.database.collection("users").document(userID).setData(userData)
+            // Define the isolated operation that creates the dictionary
+            @Sendable func createUserOperation() async throws {
+                try await FirebaseManager.shared.database
+                    .collection("users")
+                    .document(userID)
+                    .setData([
+                        "email": email,
+                        "name": name,
+                        "birth_date": birthDate,
+                        "gender": gender.rawValue,
+                        "display_name": displayName as Any,
+                        "created_at": FieldValue.serverTimestamp(),
+                        "last_updated": FieldValue.serverTimestamp()
+                    ])
+            }
+            
+            // Execute the isolated operation
+            try await createUserOperation()
+            
+            // Fetch the user after creation
             fetchUser(userID: userID)
         } catch {
             print("Error creating user: \(error.localizedDescription)")
@@ -312,6 +318,115 @@ final class FirebaseViewModel {
             return false
         }
     }
+    
+    // Safe update method for profile image URL
+    private func updateProfileImageURL(userId: String, imageUrl: String) async throws {
+        // Create the dictionary on the main actor to ensure Sendable conformance
+        @Sendable func updateOperation() async throws {
+            try await FirebaseManager.shared.database
+                .collection("users")
+                .document(userId)
+                .updateData([
+                    "profile_image_url": imageUrl,
+                    "last_updated": FieldValue.serverTimestamp()
+                ])
+        }
+        
+        // Execute the isolated operation
+        try await updateOperation()
+    }
+
+    // Safe delete field method
+    private func deleteProfileImageURL(userId: String) async throws {
+        // Create the dictionary on the main actor to ensure Sendable conformance
+        @Sendable func deleteOperation() async throws {
+            try await FirebaseManager.shared.database
+                .collection("users")
+                .document(userId)
+                .updateData([
+                    "profile_image_url": FieldValue.delete(),
+                    "last_updated": FieldValue.serverTimestamp()
+                ])
+        }
+        
+        // Execute the isolated operation
+        try await deleteOperation()
+    }
+
+    // Modified updateProfileImage method
+    func updateProfileImage(_ image: UIImage) async {
+        guard let userId = userID else {
+            errorMessage = "No user is currently signed in"
+            return
+        }
+        
+        do {
+            // Use async/await pattern with continuation to handle callback
+            let imageUrl = try await withCheckedThrowingContinuation { continuation in
+                FirebaseStorageManager.shared.uploadProfileImage(image, userId: userId) { result in
+                    switch result {
+                    case .success(let url):
+                        continuation.resume(returning: url)
+                    case .failure(let error):
+                        continuation.resume(throwing: error)
+                    }
+                }
+            }
+            
+            // Use the specific update method
+            try await updateProfileImageURL(userId: userId, imageUrl: imageUrl)
+            
+            // Update local user data
+            if var currentUser = firestoreUser {
+                currentUser.profileImageURL = imageUrl
+                firestoreUser = currentUser
+            }
+            
+            // Fetch user to ensure local state is updated
+            fetchUser(userID: userId)
+        } catch {
+            errorMessage = "Failed to update profile image: \(error.localizedDescription)"
+            print("Error updating profile image: \(error)")
+        }
+    }
+
+    // Modified deleteProfileImage method
+    func deleteProfileImage() async {
+        guard let userId = userID else {
+            errorMessage = "No user is currently signed in"
+            return
+        }
+        
+        do {
+            // Delete from Firebase Storage
+            try await withCheckedThrowingContinuation { continuation in
+                FirebaseStorageManager.shared.deleteProfileImage(userId: userId) { result in
+                    switch result {
+                    case .success():
+                        continuation.resume()
+                    case .failure(let error):
+                        continuation.resume(throwing: error)
+                    }
+                }
+            }
+            
+            // Use the specific delete method
+            try await deleteProfileImageURL(userId: userId)
+            
+            // Update local user data
+            if var currentUser = firestoreUser {
+                currentUser.profileImageURL = nil
+                firestoreUser = currentUser
+            }
+            
+            // Fetch user to ensure local state is updated
+            fetchUser(userID: userId)
+        } catch {
+            errorMessage = "Failed to delete profile image: \(error.localizedDescription)"
+            print("Error deleting profile image: \(error)")
+        }
+    }
+    
 }
 
 struct ApplicationUtility {

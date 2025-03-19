@@ -10,7 +10,7 @@ import AVKit
 import Lottie
 
 struct APODView: View {
-    @StateObject private var viewModel = APODViewModel()
+    @State private var viewModel = APODViewModel()
     @State private var isImageDetailPresented = false
     @State private var loadedImage: Image? = nil  // Neuer State für das geladene Bild
 

@@ -21,7 +21,6 @@ struct ImageDetailView: View {
     
     init(photo: AstroPhoto) {
         self.photo = photo
-        // Using _viewModel for proper StateObject initialization
         _viewModel = State(wrappedValue: PhotoInteractionViewModel(photo: photo))
     }
     
