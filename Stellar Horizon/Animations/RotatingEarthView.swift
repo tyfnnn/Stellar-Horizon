@@ -31,7 +31,6 @@ struct RotatingEarthView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    // Add navigation button to temperature chart
                     HStack {
                         Spacer()
                         
@@ -94,7 +93,6 @@ struct EarthSceneView: UIViewRepresentable {
     private func createScene() -> SCNScene {
         let scene = SCNScene()
         
-        // Debug: Verify image loading
         if let skyboxImage = UIImage(named: "stars-texture1") {
             print("Skybox image loaded successfully")
             scene.background.contents = skyboxImage
@@ -102,7 +100,6 @@ struct EarthSceneView: UIViewRepresentable {
             print("Failed to load skybox image")
         }
         
-        // Set up spherical skybox
         let skyboxNode = SCNNode()
         skyboxNode.geometry = SCNSphere(radius: 210)
         skyboxNode.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "stars-texture1")
@@ -110,16 +107,13 @@ struct EarthSceneView: UIViewRepresentable {
         skyboxNode.geometry?.firstMaterial?.cullMode = .front
         scene.rootNode.addChildNode(skyboxNode)
         
-        // Erde erstellen
         let earthNode = createEarthNode()
-        earthNode.name = "earthNode" // Add name for identification
+        earthNode.name = "earthNode"
         scene.rootNode.addChildNode(earthNode)
         
-        // Kamera hinzufügen
         let cameraNode = createCameraNode()
         scene.rootNode.addChildNode(cameraNode)
         
-        // Licht hinzufügen
         addLighting(to: scene)
         
         return scene
@@ -130,7 +124,6 @@ struct EarthSceneView: UIViewRepresentable {
         earthNode.geometry = SCNSphere(radius: 1)
         earthNode.geometry?.firstMaterial?.diffuse.contents = UIImage(named: selectedTexture)
         
-        // Rotation hinzufügen
         let rotation = SCNAction.rotateBy(x: 0, y: 2 * .pi, z: 0, duration: 200)
         earthNode.runAction(.repeatForever(rotation))
         

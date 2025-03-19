@@ -5,6 +5,7 @@
 //  Created by Tayfun Ilker on 19.03.25.
 //
 
+import Foundation
 
 // Model to represent temperature anomaly data point
 struct TemperatureAnomaly: Identifiable {

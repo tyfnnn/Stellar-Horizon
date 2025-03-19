@@ -5,6 +5,7 @@
 //  Created by Tayfun Ilker on 19.03.25.
 //
 
+import SwiftUI
 
 // Enhanced range slider with better iOS styling
 struct EnhancedRangeSlider: View {

@@ -11,10 +11,10 @@ struct Album: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let agency: String
-    let coverImage: String  // This will be a local asset name
+    let coverImage: String
     let description: String
     let photos: [AstroPhoto]
-    let photosetId: String  // Add this to store Flickr album ID
+    let photosetId: String
     
     static let allAlbums: [Album] = [
         

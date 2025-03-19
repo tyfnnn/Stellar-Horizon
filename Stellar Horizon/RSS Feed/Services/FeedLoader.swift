@@ -60,7 +60,6 @@ class FeedLoader {
                   let linkString = item.link,
                   let link = URL(string: linkString) else { return nil }
             
-            // Extrahiere das erste Bild aus dem HTML-Content
             var imageURL: URL? = nil
             
             if let content = item.content?.contentEncoded {
@@ -71,7 +70,7 @@ class FeedLoader {
 
             return FeedItem(
                 title: title,
-                description: description.strippingHTML(), // Hier HTML entfernen
+                description: description.strippingHTML(), 
                 pubDate: pubDate,
                 link: link,
                 subcategoryURL: subcategoryURL,

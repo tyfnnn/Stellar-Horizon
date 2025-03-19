@@ -21,8 +21,8 @@ struct ImageViewer: View {
                 AsyncImage(url: image) { image in
                     image
                         .resizable()
-                        .aspectRatio(contentMode: .fit) // Änderung von scaledToFill zu aspectRatio
-                        .frame(width: geometry.size.width, height: geometry.size.height) // Fügt einen Frame hinzu
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
                         .ignoresSafeArea()
                         .navigationBarBackButtonHidden(true)
                         .scaleEffect(scale)
@@ -33,7 +33,7 @@ struct ImageViewer: View {
                                     let delta = value / lastScale
                                     lastScale = value
                                     let newScale = scale * delta
-                                    scale = min(max(1.0, newScale), 4.0) // Begrenzt den Zoom zwischen 1x und 4x
+                                    scale = min(max(1.0, newScale), 4.0)
                                 }
                                 .onEnded { _ in
                                     lastScale = 1.0
@@ -48,7 +48,6 @@ struct ImageViewer: View {
                                         height: lastOffset.height + value.translation.height
                                     )
                                     
-                                    // Begrenzt die Bewegung basierend auf der Skalierung
                                     offset = CGSize(
                                         width: min(maxOffset, max(-maxOffset, newOffset.width)),
                                         height: min(maxOffset, max(-maxOffset, newOffset.height))

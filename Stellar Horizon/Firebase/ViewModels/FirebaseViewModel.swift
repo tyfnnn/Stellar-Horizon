@@ -175,7 +175,7 @@ final class FirebaseViewModel {
             let authResult = try await auth.signIn(with: credential)
             user = authResult.user
             
-            // Erstelle FireUser, falls der Benutzer neu ist
+            // Create FireUser if the user is new
             if let isNewUser = authResult.additionalUserInfo?.isNewUser, isNewUser {
                 let profile = result.user.profile
                 await createUser(
@@ -204,7 +204,7 @@ final class FirebaseViewModel {
         }
     }
     
-    // Fixed createUser method to be Sendable-compliant
+    
     private func createUser(
         userID: String,
         email: String,
@@ -214,7 +214,6 @@ final class FirebaseViewModel {
         displayName: String? = nil
     ) async {
         do {
-            // Define the isolated operation that creates the dictionary
             @Sendable func createUserOperation() async throws {
                 try await FirebaseManager.shared.database
                     .collection("users")

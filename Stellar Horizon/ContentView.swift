@@ -23,5 +23,3 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-
-// Initial Commit

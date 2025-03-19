@@ -13,7 +13,7 @@ struct PlanetView: View {
     var orbitRadius: CGFloat
     var speed: Double
     
-    @State private var angle: Double = Double.random(in: 0..<360) // Random starting angle
+    @State private var angle: Double = Double.random(in: 0..<360)
     
     var body: some View {
         let timer = Timer.publish(every: 0.02, on: .main, in: .common).autoconnect()

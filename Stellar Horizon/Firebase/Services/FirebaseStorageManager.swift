@@ -19,7 +19,6 @@ class FirebaseStorageManager {
             return
         }
         
-        // Use a flatter path structure to avoid nested path issues
         let imageRef = storage.reference().child("profile_" + userId + ".jpg")
         
         // Upload the data with minimal configuration

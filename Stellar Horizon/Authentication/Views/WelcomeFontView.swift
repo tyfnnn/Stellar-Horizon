@@ -55,7 +55,6 @@ struct MeshGradientView: View {
     
     var body: some View {
         ZStack {
-            // Erstelle mehrere überlappende Kreise mit verschiedenen Farben
             ForEach(0..<colors.count, id: \.self) { index in
                 Circle()
                     .fill(colors[index])
