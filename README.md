@@ -111,7 +111,7 @@ Special thanks to:
 
 For questions, feedback, or support, please:
 * Create an issue in the GitHub repository
-* Contact the development team at [contact@example.com]
+* Contact the development team at [tyfn.ilkr@gmail.com]
 
 ---
 
