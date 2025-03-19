@@ -1,4 +1,4 @@
-# Stellar Horizon 🌌
+# Stellar Horizon
 
 ![Stellar Horizon App](https://github.com/user-attachments/assets/f3732faf-3d1c-4b92-998d-6f6d7137e5ed)
 
