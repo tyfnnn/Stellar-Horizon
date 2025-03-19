@@ -1,159 +1,118 @@
-# Stellar Horizon 🌌
+# Stellar Horizon
 
-![Bildschirmfoto 2025-02-21 um 08 58 27](https://github.com/user-attachments/assets/f3732faf-3d1c-4b92-998d-6f6d7137e5ed)
+![Stellar Horizon App](https://github.com/user-attachments/assets/f3732faf-3d1c-4b92-998d-6f6d7137e5ed)
 
-**Explore the Cosmos from Your Pocket**  
-Stellar Horizon is an immersive iOS app that brings the wonders of space to your fingertips. Discover stunning astrophotography, stay updated with the latest space news, track the ISS in real-time, and visualize Earth's climate changes through an interactive 3D globe.
+## Explore the Universe From Your iOS Device
 
----
+Stellar Horizon transforms your iOS device into a portal to the cosmos. With stunning visuals, real-time data, and interactive features, this app brings the wonders of space exploration directly to your fingertips.
 
-## Features 🚀
+**Website:** [stellarhorizon.visual-stories.de](https://stellarhorizon.visual-stories.de)  
+**See it in action:** [Watch Demo on Instagram](https://instagram.com/your_instagram_reel_link)
 
-### 🌠 Astro Photos 
-- Browse breathtaking space images from **NASA**, **ESA**, and other sources.
-- **Save favorites** to your Firebase Firestore account for offline access.
-- Seamless authentication via **Firebase** (anonymous, email, or Google Sign-In).
+## ✨ Key Features
 
-### 📰 Space News 
-- Read curated articles from **NASA** and **ESA** directly in-app using **WebKit**.
-- **Bookmark links** to revisit later (stored in Firestore).
+### 🔭 Astronomy Gallery
+* Browse breathtaking astrophotography from **NASA**, **ESA**, and other space agencies
+* Interactive social features - like and comment on your favorite cosmic images
+* Save your favorite celestial views for offline viewing
 
-### 🛰️ ISS Tracker 
-- Real-time tracking of the International Space Station on a **MapKit**-powered map.
-- View the ISS's current location, speed, and orbital path.
+### 🌐 3D Interactive Earth
+* Explore a **SceneKit**-powered 3D Earth model with realistic textures and lighting
+* Visualize historical climate data through selectable Earth texture options
+* Smooth rotation animations with star field background for immersive experience
 
-### 🌍 3D Climate Globe 
-- A **SceneKit**-rendered 3D Earth model showcasing historical climate data.
-- Adjust timelines to see **temperature changes** visualized through dynamic textures.
+### 🛰️ ISS Live Tracker
+* Real-time tracking of the International Space Station on a MapKit-powered map
+* Monitor the ISS's current position, speed, and orbital trajectory
+* Stay informed of upcoming overhead passes at your location
 
----
+### 📱 Space News Hub
+* Stay updated with curated articles from NASA, ESA, and other space authorities
+* Bookmark important news for later reference
+* Built-in WebKit integration for seamless reading experience
 
-## UML Diagram 📊
-Below is a placeholder for the UML diagram of the app's architecture. This diagram will provide an overview of the classes, relationships, and interactions within the project.
+### 👤 User Accounts & Personalization
+* Secure authentication via Firebase (email/password or Google Sign-In)
+* Anonymous browsing option for quick access
+* Personalized experience with saved preferences and favorites
 
-```mermaid
-classDiagram
-    class Stellar_HorizonApp {
-        +init()
-        +body: Scene
-    }
-    
-    class ContentView {
-        +body: View
-    }
-    
-    class RotatingEarthView {
-        -selectedTexture: String
-        +textureOptions: [TextureOption]
-        +body: View
-    }
-    
-    class FirebaseAuthModel {
-        -auth: Auth
-        -user: FirebaseAuth.User
-        -errorMessage: String
-        +isUserSignedIn: Bool
-        +userID: String
-        +signInAnonymously()
-        +signUp(email, password)
-        +signIn(email, password)
-        +signOut()
-    }
-    
-    class FirebaseViewModel {
-        -auth: Auth
-        -user: FirebaseAuth.User
-        -firestoreUser: FirestoreUser
-        -errorMessage: String
-        +isUserSignedIn: Bool
-        +userID: String
-        +signInAnonymously()
-        +signUp(email, password, name, birthDate, gender)
-        +signIn(email, password)
-    }
-    
-    class AuthenticationView {
-        +body: View
-    }
-    
-    class BookmarkManager {
-        -bookmarkedItems: Set<String>
-        -bookmarksKey: String
-        +isBookmarked(itemId): Bool
-        +toggleBookmark(itemId)
-        -loadBookmarks()
-        -saveBookmarks()
-    }
-    
-    class TextureOption {
-        +id: String
-        +title: String
-    }
+## 🛠️ Technical Architecture
 
-    Stellar_HorizonApp --> ContentView
-    ContentView --> RotatingEarthView
-    ContentView --> AuthenticationView
-    AuthenticationView --> FirebaseViewModel
-    RotatingEarthView --> TextureOption
-    FirebaseViewModel --> FirebaseAuthModel
-    ContentView --> BookmarkManager
-```
+Stellar Horizon is built using modern iOS development practices:
 
----
+* **UI Framework**: SwiftUI for responsive, declarative UI design
+* **3D Visualization**: SceneKit for Earth model and space simulations
+* **Authentication**: Firebase Authentication with multiple sign-in methods
+* **Data Storage**: Firestore for user data, bookmarks, and interactions
+* **Image Handling**: Asynchronous image loading and caching
+* **Networking**: Efficient API clients for NASA, ESA, and n2yo.com services
+* **Animations**: Custom and Lottie-powered animations for engaging UI
 
-## Installation ⚙️
+## ⚙️ Installation
 
-1. **Clone the Repository**  
+1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/stellar-horizon.git
+   git clone https://github.com/yourusername/stellar-horizon.git
    cd stellar-horizon
    ```
 
-2. **Install Package Dependencies**  
+2. **Install dependencies**
+   ```bash
+   # If using CocoaPods
+   pod install
+   
+   # If using Swift Package Manager
+   # Dependencies are automatically resolved when opening in Xcode
+   ```
 
-3. **Open in Xcode**  
-   Launch `Stellar Horizon.xcworkspace`.
-
----
-
-## Configuration 🔑
-
-### Firebase Setup 🔥
-1. Create a Firebase project on the [Firebase Console](https://console.firebase.google.com/).
-2. Enable **Authentication** (Anonymous, Email/Password, Google Sign-In).
-3. Enable **Firestore Database**.
-4. Download your `GoogleService-Info.plist` and add it to the Xcode project under the `Stellar Horizon` target.
-
-### NASA API Key 🛸
-1. Obtain a free API key from [NASA API Portal](https://api.nasa.gov/).
-2. Add the key to `Config.swift`:
+3. **Configure API keys**
+   * Create a `Config.swift` file with your API keys:
    ```swift
    struct Config {
-       static let nasaAPIKey = "YOUR_API_KEY_HERE"
+       static let nasaApiKey = "YOUR_NASA_API_KEY"
+       static let n2yoApiKey = "YOUR_N2YO_API_KEY"
    }
    ```
 
+4. **Firebase setup**
+   * Create a project in the [Firebase Console](https://console.firebase.google.com/)
+   * Enable Authentication and Firestore
+   * Download and add the `GoogleService-Info.plist` to your project
+
+5. **Open in Xcode**
+   * Launch `Stellar Horizon.xcworkspace` or `Stellar Horizon.xcodeproj`
+   * Select your development team
+   * Build and run!
+
+## 🧩 Dependencies
+
+* **Firebase** - Authentication, Firestore, Storage
+* **FeedKit** - RSS feed parsing for space news
+* **Lottie** - High-quality animations
+* **Google Sign-In** - Alternative authentication method
+
+## 📄 License & Attribution
+
+Stellar Horizon is available under the MIT License. When using this application, please provide appropriate attribution:
+
+* NASA data and imagery: "Source: NASA"
+* ESA data and imagery: "Source: ESA"
+* Berkeley Earth temperature data: "Source: Berkeley Earth Land/Ocean Temperature Record"
+* Satellite information: "Satellite information provided by n2yo.com"
+
+## 👥 Contributors & Acknowledgments
+
+Special thanks to:
+* NASA and ESA for their open data initiatives
+* The space science community for inspiration
+* Open source contributors who make projects like this possible
+
+## 📞 Contact & Support
+
+For questions, feedback, or support, please:
+* Create an issue in the GitHub repository
+* Contact the development team at [contact@example.com]
+
 ---
 
-## Technologies Used 💻
-- **Authentication & Database**: Firebase (Auth, Firestore)
-- **APIs**: NASA APOD (Astronomy Picture of the Day), NASA/ESA News
-- **Mapping**: MapKit (ISS Tracker)
-- **3D Rendering**: SceneKit (Climate Globe)
-- **Web Content**: WebKit (Space News)
-- **RSS Feeds**: FeedKit
-- **Lottie Animations**: Airbnb Lottie Framework
-
----
-
-## License 📄
-Distributed under the MIT License. See `LICENSE` for details.
-
----
-
-## Acknowledgments 🪐
-- **NASA** and **ESA** for providing open-access APIs and media.
-- Firebase for backend infrastructure.
-- The open-source community for invaluable tools and libraries.
-
-  
+**Stellar Horizon** - Because the universe belongs in your pocket.
