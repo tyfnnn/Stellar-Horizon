@@ -50,6 +50,19 @@ Stellar Horizon is built using modern iOS development practices:
 
 ## 📱 Screenshots
 
+![Screenshot12](https://github.com/user-attachments/assets/fc246217-34f9-4502-81b0-aaa5f6204f10)
+![Screenshot11](https://github.com/user-attachments/assets/4ee110b8-4390-462c-9979-6c59f3f65a32)
+![Screenshot10](https://github.com/user-attachments/assets/2a4791f8-fa08-4c10-870a-1fa1b468b40f)
+![Screenshot9](https://github.com/user-attachments/assets/6b311836-3d77-4eb9-b798-200302d980a4)
+![Screenshot8](https://github.com/user-attachments/assets/a1a9af6c-a1cd-4d56-8c33-adfe0a43246c)
+![Screenshot7](https://github.com/user-attachments/assets/2d7d2a0b-f324-4ac4-be3b-9ae440e0bec4)
+![Screenshot6](https://github.com/user-attachments/assets/ec562b6f-af29-4cf7-97ff-fb46f19ba733)
+![Screenshot5](https://github.com/user-attachments/assets/fced0803-d332-4ba2-abbc-90188404f55e)
+![Screenshot4](https://github.com/user-attachments/assets/067af48c-c79e-487b-90e0-77a0d83c8cda)
+![Screenshot3](https://github.com/user-attachments/assets/165cdc2f-4568-42af-a551-016ea95873ab)
+![Screenshot2](https://github.com/user-attachments/assets/b05b5c49-f6ea-4200-a2c4-74a6ca01b549)
+![Screenshot1](https://github.com/user-attachments/assets/772fddbf-edc9-4524-8fde-568db06d31e6)
+
 (Screenshots would be inserted here)
 
 ## ⚙️ Installation
